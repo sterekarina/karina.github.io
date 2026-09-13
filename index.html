@@ -1542,6 +1542,69 @@
 
         }
 
+
+        /* =====================================
+           PLANNER
+        ===================================== */
+        .planner-section {
+            display: none;
+            position: relative;
+            z-index: 5;
+            min-height: 100vh;
+            padding: 135px 7vw 80px;
+        }
+        body.planner-active .hero { display: none; }
+        body.planner-active .planner-section { display: block; }
+        .planner-shell { max-width: 1120px; margin: 0 auto; }
+        .planner-top { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-bottom:42px; }
+        .planner-eyebrow, .panel-number, .coming-card > span { color:#b85d7e; font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; }
+        .planner-title { margin-top:10px; color:#432a32; font-family:"Cormorant Garamond",serif; font-size:clamp(48px,6vw,76px); font-weight:500; line-height:.92; }
+        .planner-title em { color:#c45a80; font-weight:400; }
+        .planner-back, .soft-button, .form-cancel { border:1px solid rgba(163,96,117,.18); background:rgba(255,255,255,.65); color:#714f59; border-radius:14px; padding:12px 17px; cursor:pointer; }
+        .planner-panel { display:none; padding:32px; border:1px solid rgba(255,255,255,.95); border-radius:28px; background:rgba(255,252,250,.75); box-shadow:0 24px 65px rgba(76,42,52,.08); backdrop-filter:blur(20px); }
+        .planner-panel.active { display:block; }
+        .panel-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:25px; padding-bottom:26px; border-bottom:1px solid rgba(163,96,117,.13); }
+        .panel-heading h3 { margin:7px 0 5px; color:#492f37; font-family:"Cormorant Garamond",serif; font-size:40px; font-weight:500; }
+        .panel-heading p { max-width:650px; color:#8b7079; font-size:12px; line-height:1.7; }
+        .add-guest-button, .form-save { border:0; border-radius:14px; padding:13px 18px; color:#fff; background:linear-gradient(135deg,#d77a9e,#bd507b); box-shadow:0 10px 25px rgba(183,74,117,.18); cursor:pointer; }
+        .guest-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:22px 0; }
+        .stat-card { padding:18px; border-radius:18px; background:rgba(255,255,255,.7); border:1px solid rgba(201,160,174,.2); }
+        .stat-card span { display:block; color:#a64b6d; font-family:"Cormorant Garamond",serif; font-size:34px; }
+        .stat-card small { color:#8e727b; font-size:10px; }
+        .guest-toolbar { display:flex; gap:10px; margin-bottom:14px; }
+        .guest-toolbar input, .guest-toolbar select, .guest-form input, .guest-form select { width:100%; height:43px; border:1px solid rgba(201,160,174,.25); border-radius:12px; background:rgba(255,255,255,.72); color:#593d46; padding:0 13px; outline:none; font:inherit; font-size:12px; }
+        .guest-toolbar input { flex:1; } .guest-toolbar select { max-width:180px; }
+        .guest-form { padding:20px; margin-bottom:18px; border-radius:18px; background:rgba(247,224,232,.42); border:1px solid rgba(201,160,174,.2); }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+        .guest-form label { color:#765761; font-size:10px; }
+        .guest-form input, .guest-form select { display:block; margin-top:6px; }
+        .form-actions { display:flex; justify-content:flex-end; gap:9px; margin-top:5px; }
+        .guest-table-wrap { overflow-x:auto; }
+        .guest-table { width:100%; border-collapse:collapse; }
+        .guest-table th { padding:11px 9px; color:#a27684; text-align:left; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; border-bottom:1px solid rgba(163,96,117,.13); }
+        .guest-table td { padding:15px 9px; color:#62454e; font-size:11px; border-bottom:1px solid rgba(163,96,117,.08); }
+        .guest-name { font-family:"Cormorant Garamond",serif; font-size:19px; color:#492f37; }
+        .guest-contact { color:#977d85; font-size:9px; line-height:1.5; }
+        .status { display:inline-flex; padding:6px 9px; border-radius:20px; font-size:9px; }
+        .status.confirmed { color:#50745d; background:#e8f2ea; } .status.pending { color:#967044; background:#f7eddc; } .status.declined { color:#9a5b68; background:#f5e2e7; }
+        .delete-guest { border:0; background:transparent; color:#b65b7e; cursor:pointer; font-size:17px; }
+        .empty-guests { padding:55px 20px; text-align:center; color:#987781; font-size:12px; line-height:1.8; }
+        .empty-guests span { opacity:.7; font-size:10px; }
+        .coming-card { margin-top:25px; min-height:300px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; border-radius:24px; background:linear-gradient(145deg,rgba(247,220,229,.65),rgba(255,255,255,.65)); border:1px solid rgba(255,255,255,.9); }
+        .coming-card strong { margin:10px 0 7px; color:#492f37; font-family:"Cormorant Garamond",serif; font-size:38px; font-weight:500; }
+        .coming-card p { max-width:520px; color:#8b7079; font-size:12px; line-height:1.8; margin-bottom:20px; }
+        @media (max-width:600px) {
+            .planner-section { padding:105px 18px 45px; }
+            .planner-top { align-items:flex-start; flex-direction:column; margin-bottom:25px; }
+            .planner-panel { padding:22px 17px; border-radius:23px; }
+            .panel-heading { flex-direction:column; }
+            .panel-heading h3 { font-size:34px; }
+            .guest-stats { grid-template-columns:1fr 1fr; }
+            .guest-toolbar, .form-row { flex-direction:column; display:flex; }
+            .guest-toolbar select { max-width:none; }
+            .coming-card strong { font-size:31px; }
+        }
+
     </style>
 
 </head>
@@ -1667,16 +1730,16 @@
             <div class="hero-buttons">
 
 
-                <a href="#"
-                   class="hero-button primary">
+                <a href="#guests"
+                   class="hero-button primary" id="heroStartButton">
 
                     Începe să planifici
 
                 </a>
 
 
-                <a href="#"
-                   class="hero-button secondary">
+                <a href="#guests"
+                   class="hero-button secondary" id="heroPlannerButton">
 
                     Descoperă planner-ul
 
@@ -1689,6 +1752,93 @@
         </div>
 
     </main>
+
+
+    <!-- =====================================
+         PLANNER SECTIONS
+    ===================================== -->
+    <section class="planner-section" id="plannerSections" aria-live="polite">
+        <div class="planner-shell">
+
+            <div class="planner-top">
+                <div>
+                    <span class="planner-eyebrow">THE WEDDING EDIT · PLANNER</span>
+                    <h2 class="planner-title">Planifică nunta ta,<br><em>fără stres.</em></h2>
+                </div>
+                <button class="planner-back" id="plannerBack" type="button">← Înapoi</button>
+            </div>
+
+            <!-- GUESTS -->
+            <div class="planner-panel active" id="guestsPanel" data-panel="guests">
+                <div class="panel-heading">
+                    <div>
+                        <span class="panel-number">01</span>
+                        <h3>Invitați</h3>
+                        <p>Ține evidența invitaților, a confirmărilor și a numărului de persoane.</p>
+                    </div>
+                    <button class="add-guest-button" id="addGuestButton" type="button">+ Adaugă invitat</button>
+                </div>
+
+                <div class="guest-stats">
+                    <div class="stat-card"><span id="guestTotal">0</span><small>Total invitați</small></div>
+                    <div class="stat-card"><span id="guestConfirmed">0</span><small>Confirmați</small></div>
+                    <div class="stat-card"><span id="guestPending">0</span><small>În așteptare</small></div>
+                    <div class="stat-card"><span id="guestDeclined">0</span><small>Nu pot veni</small></div>
+                </div>
+
+                <div class="guest-toolbar">
+                    <input id="guestSearch" type="search" placeholder="Caută un invitat..." aria-label="Caută un invitat">
+                    <select id="guestFilter" aria-label="Filtrează invitații">
+                        <option value="all">Toți invitații</option>
+                        <option value="confirmed">Confirmați</option>
+                        <option value="pending">În așteptare</option>
+                        <option value="declined">Nu pot veni</option>
+                    </select>
+                </div>
+
+                <div class="guest-form" id="guestForm" hidden>
+                    <div class="form-row">
+                        <label>Nume<input id="guestName" type="text" placeholder="Ex. Ana Popescu"></label>
+                        <label>Număr persoane<input id="guestPeople" type="number" min="1" value="1"></label>
+                    </div>
+                    <div class="form-row">
+                        <label>Email<input id="guestEmail" type="email" placeholder="ana@email.com"></label>
+                        <label>Telefon<input id="guestPhone" type="tel" placeholder="07xx xxx xxx"></label>
+                    </div>
+                    <div class="form-row">
+                        <label>RSVP<select id="guestStatus"><option value="pending">În așteptare</option><option value="confirmed">Confirmat</option><option value="declined">Nu poate veni</option></select></label>
+                        <label>Notițe<input id="guestNotes" type="text" placeholder="Ex. vegetarian, copil, familie..."></label>
+                    </div>
+                    <div class="form-actions"><button type="button" class="form-cancel" id="cancelGuest">Anulează</button><button type="button" class="form-save" id="saveGuest">Salvează invitatul</button></div>
+                </div>
+
+                <div class="guest-table-wrap">
+                    <table class="guest-table">
+                        <thead><tr><th>Invitat</th><th>Pers.</th><th>RSVP</th><th>Contact</th><th></th></tr></thead>
+                        <tbody id="guestTableBody"></tbody>
+                    </table>
+                    <div class="empty-guests" id="emptyGuests">Nu ai adăugat încă niciun invitat.<br><span>Începe cu primul nume din lista ta.</span></div>
+                </div>
+            </div>
+
+            <!-- SEATING -->
+            <div class="planner-panel" data-panel="seating">
+                <div class="panel-heading">
+                    <div><span class="panel-number">02</span><h3>Așezarea meselor</h3><p>Vom construi aici planul sălii și vei putea organiza invitații la fiecare masă.</p></div>
+                </div>
+                <div class="coming-card"><span>COMING NEXT</span><strong>Planul meselor tale</strong><p>În următorul pas adăugăm mese, numărul de locuri și mutarea invitaților între mese.</p><button type="button" class="soft-button" id="backToGuests">← Înapoi la invitați</button></div>
+            </div>
+
+            <!-- DIGITAL INVITATION -->
+            <div class="planner-panel" data-panel="digital-invitation">
+                <div class="panel-heading">
+                    <div><span class="panel-number">03</span><h3>Invitație digitală</h3><p>Vom crea o invitație elegantă, personalizată și ușor de distribuit.</p></div>
+                </div>
+                <div class="coming-card invitation-card"><span>COMING NEXT</span><strong>Invitația ta, online.</strong><p>Nume, dată, locație, program, mesaj pentru invitați și un link de confirmare — toate într-o singură pagină.</p><button type="button" class="soft-button" id="backToGuests2">← Înapoi la invitați</button></div>
+            </div>
+
+        </div>
+    </section>
 
 
     <!-- =====================================
@@ -1779,182 +1929,33 @@
 
 
             <!-- 01 -->
-
-            <a href="#"
-               class="category">
-
-                <span class="category-number">
-                    01
-                </span>
-
-
+            <a href="#guests" class="category" data-section="guests">
+                <span class="category-number">01</span>
                 <span>
-
-                    <span class="category-name">
-                        Checklist
-                    </span>
-
-                    <span class="category-description">
-                        Organizează fiecare pas al nunții
-                    </span>
-
+                    <span class="category-name">Invitați</span>
+                    <span class="category-description">Lista invitaților și confirmările</span>
                 </span>
-
-
-                <span class="category-arrow">
-                    →
-                </span>
-
+                <span class="category-arrow">→</span>
             </a>
-
 
             <!-- 02 -->
-
-            <a href="#"
-               class="category">
-
-                <span class="category-number">
-                    02
-                </span>
-
-
+            <a href="#seating" class="category" data-section="seating">
+                <span class="category-number">02</span>
                 <span>
-
-                    <span class="category-name">
-                        Buget
-                    </span>
-
-                    <span class="category-description">
-                        Planifică și urmărește cheltuielile
-                    </span>
-
+                    <span class="category-name">Așezarea meselor</span>
+                    <span class="category-description">Creează și organizează mesele</span>
                 </span>
-
-
-                <span class="category-arrow">
-                    →
-                </span>
-
+                <span class="category-arrow">→</span>
             </a>
-
 
             <!-- 03 -->
-
-            <a href="#"
-               class="category">
-
-                <span class="category-number">
-                    03
-                </span>
-
-
+            <a href="#digital-invitation" class="category" data-section="digital-invitation">
+                <span class="category-number">03</span>
                 <span>
-
-                    <span class="category-name">
-                        Invitați
-                    </span>
-
-                    <span class="category-description">
-                        Lista invitaților și confirmările
-                    </span>
-
+                    <span class="category-name">Invitație digitală</span>
+                    <span class="category-description">Creează invitația pentru invitații tăi</span>
                 </span>
-
-
-                <span class="category-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- 04 -->
-
-            <a href="#"
-               class="category">
-
-                <span class="category-number">
-                    04
-                </span>
-
-
-                <span>
-
-                    <span class="category-name">
-                        Furnizori
-                    </span>
-
-                    <span class="category-description">
-                        Foto, video, muzică, flori și decor
-                    </span>
-
-                </span>
-
-
-                <span class="category-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- 05 -->
-
-            <a href="#"
-               class="category">
-
-                <span class="category-number">
-                    05
-                </span>
-
-
-                <span>
-
-                    <span class="category-name">
-                        Locație & Mese
-                    </span>
-
-                    <span class="category-description">
-                        Așezarea meselor și organizarea sălii
-                    </span>
-
-                </span>
-
-
-                <span class="category-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-            <!-- 06 -->
-
-            <a href="#"
-               class="category">
-
-                <span class="category-number">
-                    06
-                </span>
-
-
-                <span>
-
-                    <span class="category-name">
-                        Timeline
-                    </span>
-
-                    <span class="category-description">
-                        Programul și momentele zilei
-                    </span>
-
-                </span>
-
-
-                <span class="category-arrow">
-                    →
-                </span>
-
+                <span class="category-arrow">→</span>
             </a>
 
 
@@ -2243,32 +2244,128 @@
 
 
         /* =================================
-           CATEGORY LINKS
+           PLANNER NAVIGATION
         ================================= */
+        const plannerSections = document.getElementById("plannerSections");
+        const plannerBack = document.getElementById("plannerBack");
+        const categoryLinks = document.querySelectorAll(".category");
+        const panels = document.querySelectorAll(".planner-panel");
 
-        document
-            .querySelectorAll(".category")
-            .forEach(
-                function(category) {
+        function showPlanner(sectionName) {
+            body.classList.add("planner-active");
+            panels.forEach(panel => panel.classList.toggle("active", panel.dataset.panel === sectionName));
+            closeMenu();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
 
-                    category.addEventListener(
-                        "click",
-                        function(event) {
+        function hidePlanner() {
+            body.classList.remove("planner-active");
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
 
-                            /*
-                             * Pentru moment
-                             * nu deschidem alte pagini.
-                             */
+        categoryLinks.forEach(category => {
+            category.addEventListener("click", function(event) {
+                event.preventDefault();
+                showPlanner(category.dataset.section);
+            });
+        });
 
-                            event.preventDefault();
+        plannerBack.addEventListener("click", hidePlanner);
 
-                        }
-                    );
+        document.getElementById("backToGuests").addEventListener("click", () => showPlanner("guests"));
+        document.getElementById("backToGuests2").addEventListener("click", () => showPlanner("guests"));
 
-                }
-            );
+        /* =================================
+           GUEST LIST
+        ================================= */
+        const guestForm = document.getElementById("guestForm");
+        const guestTableBody = document.getElementById("guestTableBody");
+        const emptyGuests = document.getElementById("emptyGuests");
+        const guestSearch = document.getElementById("guestSearch");
+        const guestFilter = document.getElementById("guestFilter");
+        const STORAGE_KEY = "theWeddingEditGuests";
+        let guests = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
 
+        function saveGuests() { localStorage.setItem(STORAGE_KEY, JSON.stringify(guests)); }
 
+        function statusLabel(status) {
+            return status === "confirmed" ? "Confirmat" : status === "declined" ? "Nu poate veni" : "În așteptare";
+        }
+
+        function renderGuests() {
+            const query = guestSearch.value.trim().toLowerCase();
+            const filter = guestFilter.value;
+            const filtered = guests.filter(g => {
+                const matchesSearch = !query || [g.name, g.email, g.phone, g.notes].join(" ").toLowerCase().includes(query);
+                const matchesFilter = filter === "all" || g.status === filter;
+                return matchesSearch && matchesFilter;
+            });
+
+            guestTableBody.innerHTML = filtered.map(g => `
+                <tr>
+                    <td><div class="guest-name">${escapeHtml(g.name)}</div>${g.notes ? `<div class="guest-contact">${escapeHtml(g.notes)}</div>` : ""}</td>
+                    <td>${g.people}</td>
+                    <td><span class="status ${g.status}">${statusLabel(g.status)}</span></td>
+                    <td><div class="guest-contact">${escapeHtml(g.email || "—")}<br>${escapeHtml(g.phone || "—")}</div></td>
+                    <td><button class="delete-guest" data-id="${g.id}" title="Șterge invitatul" aria-label="Șterge invitatul">×</button></td>
+                </tr>`).join("");
+
+            emptyGuests.style.display = filtered.length ? "none" : "block";
+            document.getElementById("guestTotal").textContent = guests.length;
+            document.getElementById("guestConfirmed").textContent = guests.filter(g => g.status === "confirmed").length;
+            document.getElementById("guestPending").textContent = guests.filter(g => g.status === "pending").length;
+            document.getElementById("guestDeclined").textContent = guests.filter(g => g.status === "declined").length;
+
+            document.querySelectorAll(".delete-guest").forEach(btn => btn.addEventListener("click", () => {
+                guests = guests.filter(g => g.id !== btn.dataset.id);
+                saveGuests();
+                renderGuests();
+
+        [document.getElementById("startPlanningButton"), document.getElementById("heroStartButton"), document.getElementById("heroPlannerButton")].forEach(button => {
+            if (button) button.addEventListener("click", event => {
+                event.preventDefault();
+                showPlanner("guests");
+            });
+        });
+            }));
+        }
+
+        function escapeHtml(value) {
+            return String(value || "").replace(/[&<>'"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
+        }
+
+        document.getElementById("addGuestButton").addEventListener("click", () => {
+            guestForm.hidden = false;
+            document.getElementById("guestName").focus();
+        });
+
+        document.getElementById("cancelGuest").addEventListener("click", () => {
+            guestForm.hidden = true;
+            guestForm.querySelectorAll("input").forEach(i => i.value = "");
+            document.getElementById("guestPeople").value = 1;
+            document.getElementById("guestStatus").value = "pending";
+        });
+
+        document.getElementById("saveGuest").addEventListener("click", () => {
+            const name = document.getElementById("guestName").value.trim();
+            if (!name) { document.getElementById("guestName").focus(); return; }
+            guests.push({
+                id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+                name,
+                people: Math.max(1, Number(document.getElementById("guestPeople").value) || 1),
+                email: document.getElementById("guestEmail").value.trim(),
+                phone: document.getElementById("guestPhone").value.trim(),
+                status: document.getElementById("guestStatus").value,
+                notes: document.getElementById("guestNotes").value.trim()
+            });
+            saveGuests();
+            document.getElementById("cancelGuest").click();
+            renderGuests();
+        });
+
+        guestSearch.addEventListener("input", renderGuests);
+        guestFilter.addEventListener("change", renderGuests);
+        renderGuests();
     </script>
 
 
