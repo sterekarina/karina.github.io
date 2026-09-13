@@ -9,13 +9,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-/* =====================================================
+/* =========================
    RESET
-===================================================== */
+========================= */
 
 * {
     margin: 0;
@@ -24,30 +24,40 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
+    width: 100%;
     min-height: 100vh;
+
+    overflow-x: hidden;
+
+    color: #4a3038;
 
     font-family: "DM Sans", sans-serif;
 
-    color: #3d2930;
-
     background:
         radial-gradient(
-            circle at 78% 20%,
-            rgba(239, 139, 171, .18),
-            transparent 32%
+            circle at 50% 35%,
+            rgba(255,255,255,.92) 0%,
+            rgba(255,250,247,.75) 32%,
+            transparent 65%
         ),
         radial-gradient(
-            circle at 18% 85%,
-            rgba(245, 184, 200, .18),
+            circle at 82% 18%,
+            rgba(224,116,153,.15),
             transparent 34%
         ),
-        #fbf6f1;
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(226,145,169,.13),
+            transparent 35%
+        ),
+        #faf4ee;
 
-    overflow-x: hidden;
+    transition: overflow .3s ease;
 }
 
 body.menu-open {
@@ -55,55 +65,54 @@ body.menu-open {
 }
 
 
-/* =====================================================
-   BACKGROUND LIGHT
-===================================================== */
+/* =========================
+   SATIN LIGHT
+========================= */
 
-.light {
+.satin-light {
     position: fixed;
 
-    width: 550px;
-    height: 550px;
+    width: 500px;
+    height: 500px;
 
     border-radius: 50%;
 
-    filter: blur(120px);
+    filter: blur(100px);
 
     pointer-events: none;
 
-    z-index: -1;
+    z-index: 0;
 }
 
-.light-one {
-    top: -280px;
+.satin-one {
+    top: -260px;
     right: -100px;
 
-    background: rgba(226, 105, 148, .13);
+    background: rgba(215,103,145,.13);
 }
 
-.light-two {
-    bottom: -330px;
-    left: -180px;
+.satin-two {
+    bottom: -300px;
+    left: 15%;
 
-    background: rgba(247, 188, 204, .15);
+    background: rgba(237,177,195,.12);
 }
 
 
-/* =====================================================
-   TOP NAVIGATION
-===================================================== */
+/* =========================
+   NAVBAR
+========================= */
 
-.top-nav {
+.navbar {
     position: fixed;
 
-    top: 28px;
+    top: 27px;
     left: 50%;
 
     transform: translateX(-50%);
 
-    width: min(1110px, calc(100% - 70px));
-
-    height: 64px;
+    width: min(1120px, calc(100% - 50px));
+    height: 66px;
 
     display: flex;
     align-items: center;
@@ -112,22 +121,21 @@ body.menu-open {
     padding: 0 20px;
 
     border: 1px solid rgba(255,255,255,.95);
-
-    border-radius: 22px;
+    border-radius: 23px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(255,255,255,.88),
-            rgba(255,247,244,.76)
+            rgba(255,255,255,.91),
+            rgba(255,246,242,.78)
         );
 
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
 
     box-shadow:
-        0 20px 50px rgba(75,40,51,.07),
-        inset 0 1px 0 rgba(255,255,255,.95);
+        0 20px 55px rgba(76,42,52,.07),
+        inset 0 1px 0 rgba(255,255,255,1);
 
     z-index: 100;
 }
@@ -143,12 +151,12 @@ body.menu-open {
 
     text-decoration: none;
 
-    color: #4c3039;
+    color: #4d3139;
 }
 
-.logo-icon {
-    width: 32px;
-    height: 32px;
+.logo-heart {
+    width: 34px;
+    height: 34px;
 
     display: flex;
     align-items: center;
@@ -161,36 +169,37 @@ body.menu-open {
     background:
         linear-gradient(
             145deg,
-            #efa6be,
-            #d76c96
+            #efa6bf,
+            #cb5d88
         );
 
     box-shadow:
-        0 7px 20px rgba(205,94,136,.24);
+        0 8px 22px rgba(197,87,129,.25);
 }
 
 .logo-name {
     font-family: "Cormorant Garamond", serif;
 
-    font-size: 23px;
-
+    font-size: 24px;
     font-weight: 600;
 }
 
 
-/* NAVIGATION LINKS */
+/* NAV LINKS */
 
 .nav-links {
     display: flex;
+    align-items: center;
+
     gap: 7px;
 }
 
 .nav-links a {
-    padding: 9px 14px;
+    padding: 10px 15px;
+
+    color: #765761;
 
     text-decoration: none;
-
-    color: #765962;
 
     font-size: 12px;
 
@@ -198,16 +207,16 @@ body.menu-open {
 }
 
 .nav-links a:hover {
-    color: #b44870;
+    color: #bc4f7a;
 }
 
 
 /* NAV BUTTON */
 
 .nav-button {
-    height: 40px;
+    padding: 0 21px;
 
-    padding: 0 20px;
+    height: 41px;
 
     display: flex;
     align-items: center;
@@ -217,177 +226,223 @@ body.menu-open {
 
     color: white;
 
-    background:
-        linear-gradient(
-            135deg,
-            #d8799d,
-            #bd507b
-        );
-
     text-decoration: none;
 
     font-size: 12px;
+    font-weight: 500;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d87b9f,
+            #bd527d
+        );
 
     box-shadow:
-        0 9px 25px rgba(185,76,119,.20);
+        0 10px 25px rgba(183,74,117,.21);
 
     transition: .3s ease;
 }
 
 .nav-button:hover {
     transform: translateY(-2px);
-
-    box-shadow:
-        0 13px 30px rgba(185,76,119,.28);
 }
 
 
-/* =====================================================
-   HERO
-===================================================== */
+/* =========================
+   MAIN HERO
+========================= */
 
 .hero {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
     min-height: 100vh;
 
-    width: min(1380px, 100%);
-
-    margin: auto;
-
     display: flex;
+
     align-items: center;
+    justify-content: center;
+
+    text-align: center;
 
     padding:
-        140px 80px
+        150px
+        110px
         70px;
 }
 
 
-/* CONTINUTUL PRINCIPAL */
+/* CENTRUL REAL AL PAGINII */
 
 .hero-content {
-    width: 700px;
+    width: min(900px, 100%);
 
-    margin-left: 55px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     animation:
-        heroAppear .9s cubic-bezier(.22,1,.36,1) both;
+        appear .9s cubic-bezier(.22,1,.36,1) both;
 }
 
 
-/* EYEBROW */
+/* =========================
+   EYEBROW
+========================= */
 
 .eyebrow {
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    gap: 12px;
+    gap: 13px;
 
-    margin-bottom: 28px;
+    margin-bottom: 31px;
 
-    color: #b96783;
+    color: #b65d7e;
 
     font-size: 10px;
-
     font-weight: 500;
 
-    letter-spacing: 3.5px;
+    letter-spacing: 4px;
 
     text-transform: uppercase;
 }
 
 .eyebrow-line {
-    width: 30px;
+    width: 35px;
     height: 1px;
 
-    background: #d995aa;
+    background: #d58da5;
 }
 
 
-/* TITLE */
+/* =========================
+   MAIN TITLE
+========================= */
 
-.title {
-    font-family: "Cormorant Garamond", serif;
+/*
+   IMPORTANT:
+   Folosim un singur bloc fluid.
+   Nu mai există "Your perfect" într-o parte
+   și "Wedding" în altă parte.
+*/
 
-    color: #402a31;
+.main-title {
+    width: 100%;
 
-    font-size: clamp(78px, 8.3vw, 126px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    font-weight: 500;
-
-    line-height: .77;
-
-    letter-spacing: -5px;
+    color: #40282f;
 }
 
-.title-top {
-    display: block;
-}
 
-.title-script {
-    display: block;
+/* YOUR PERFECT */
 
-    margin-top: 18px;
-    margin-left: 3px;
-
+.title-first {
     font-family: "Great Vibes", cursive;
 
-    font-size: 1.08em;
+    font-size: clamp(
+        64px,
+        8.5vw,
+        122px
+    );
 
     font-weight: 400;
 
-    letter-spacing: -1px;
+    line-height: .92;
+
+    letter-spacing: 0;
+
+    white-space: nowrap;
+}
+
+
+/* WEDDING */
+
+.title-second {
+    margin-top: 4px;
+
+    font-family: "Great Vibes", cursive;
+
+    font-size: clamp(
+        78px,
+        10.5vw,
+        150px
+    );
+
+    font-weight: 400;
+
+    line-height: .88;
+
+    white-space: nowrap;
 
     background:
         linear-gradient(
             105deg,
-            #a84469,
-            #d46d94 50%,
-            #b54c76
+            #a84369 0%,
+            #c65a83 45%,
+            #e078a1 100%
         );
 
     -webkit-background-clip: text;
     background-clip: text;
 
     color: transparent;
+
+    filter:
+        drop-shadow(
+            0 8px 16px rgba(180,76,116,.08)
+        );
 }
 
 
-/* DESCRIPTION */
+/* =========================
+   DESCRIPTION
+========================= */
 
 .description {
-    width: 450px;
+    width: min(510px, 100%);
 
     margin-top: 42px;
 
-    color: #795e68;
+    color: #795f68;
 
     font-size: 14px;
 
-    line-height: 1.85;
-
     font-weight: 300;
+
+    line-height: 1.9;
 }
 
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 
-.buttons {
+.hero-buttons {
     display: flex;
 
-    gap: 12px;
+    justify-content: center;
 
-    margin-top: 30px;
+    gap: 13px;
+
+    margin-top: 31px;
 }
 
-.primary,
-.secondary {
-    height: 47px;
+.hero-button {
+    height: 48px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 0 22px;
+    padding: 0 24px;
 
     border-radius: 15px;
 
@@ -395,53 +450,59 @@ body.menu-open {
 
     font-size: 12px;
 
-    transition: .3s ease;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
 }
 
-.primary {
+.hero-button.primary {
     color: white;
 
     background:
         linear-gradient(
             135deg,
-            #d6799d,
-            #bc507b
+            #d77a9e,
+            #bd507b
         );
 
     box-shadow:
-        0 12px 28px rgba(185,78,119,.20);
+        0 13px 28px rgba(186,75,118,.20);
 }
 
-.primary:hover {
+.hero-button.primary:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 16px 32px rgba(185,78,119,.28);
+        0 17px 34px rgba(186,75,118,.28);
 }
 
-.secondary {
-    color: #704f59;
+.hero-button.secondary {
+    color: #714f59;
 
-    background: rgba(255,255,255,.58);
+    background:
+        rgba(255,255,255,.65);
 
-    border: 1px solid rgba(210,174,185,.42);
+    border: 1px solid rgba(201,160,174,.38);
+
+    backdrop-filter: blur(10px);
 }
 
-.secondary:hover {
-    background: white;
-
+.hero-button.secondary:hover {
     transform: translateY(-2px);
+
+    background: rgba(255,255,255,.9);
 }
 
 
-/* =====================================================
-   RIGHT MENU BUTTON
-===================================================== */
+/* =========================
+   LEFT MENU TAB
+========================= */
 
 .menu-trigger {
     position: fixed;
 
-    right: 0;
+    left: 0;
     top: 50%;
 
     transform: translateY(-50%);
@@ -449,28 +510,28 @@ body.menu-open {
     width: 55px;
     height: 145px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     border: 1px solid rgba(255,255,255,.95);
-    border-right: none;
+    border-left: none;
 
-    border-radius: 19px 0 0 19px;
+    border-radius:
+        0
+        20px
+        20px
+        0;
 
     background:
         linear-gradient(
             180deg,
-            rgba(255,246,248,.96),
-            rgba(248,215,226,.94)
+            rgba(255,248,247,.98),
+            rgba(246,215,226,.96)
         );
 
-    color: #a4486b;
+    color: #a64b6d;
 
     cursor: pointer;
 
     box-shadow:
-        -10px 0 35px rgba(75,39,51,.09);
+        10px 0 35px rgba(70,35,47,.09);
 
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(22px);
@@ -483,25 +544,29 @@ body.menu-open {
 }
 
 .menu-trigger:hover {
-    width: 63px;
+    width: 64px;
 }
 
-.menu-trigger-content {
+.menu-trigger-inner {
+    height: 100%;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
 
-    gap: 9px;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
 }
 
-.menu-text {
+.menu-word {
+    writing-mode: vertical-rl;
+
     font-size: 9px;
 
     font-weight: 600;
 
     letter-spacing: 3px;
-
-    writing-mode: vertical-rl;
 }
 
 .menu-arrow {
@@ -511,21 +576,19 @@ body.menu-open {
 }
 
 .menu-trigger:hover .menu-arrow {
-    transform: translateX(-3px);
+    transform: translateX(3px);
 }
-
-
-/* ASCUNDEM BUTONUL CÂND SIDEBAR-UL ESTE DESCHIS */
 
 body.menu-open .menu-trigger {
     opacity: 0;
+
     pointer-events: none;
 }
 
 
-/* =====================================================
+/* =========================
    OVERLAY
-===================================================== */
+========================= */
 
 .overlay {
     position: fixed;
@@ -533,10 +596,10 @@ body.menu-open .menu-trigger {
     inset: 0;
 
     background:
-        rgba(45,25,32,.20);
+        rgba(50,27,35,.20);
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
 
     opacity: 0;
     visibility: hidden;
@@ -545,7 +608,7 @@ body.menu-open .menu-trigger {
         opacity .45s ease,
         visibility .45s ease;
 
-    z-index: 500;
+    z-index: 400;
 }
 
 body.menu-open .overlay {
@@ -554,18 +617,21 @@ body.menu-open .overlay {
 }
 
 
-/* =====================================================
-   SIDEBAR
-===================================================== */
+/* =========================
+   LEFT SIDEBAR
+========================= */
 
 .sidebar {
     position: fixed;
 
     top: 12px;
-    right: 12px;
+    left: 12px;
     bottom: 12px;
 
-    width: min(440px, calc(100% - 24px));
+    width: min(
+        440px,
+        calc(100% - 24px)
+    );
 
     padding: 34px;
 
@@ -574,20 +640,23 @@ body.menu-open .overlay {
     background:
         linear-gradient(
             145deg,
-            rgba(255,252,250,.98),
-            rgba(250,229,235,.97)
+            rgba(255,252,250,.99),
+            rgba(250,228,235,.98)
         );
 
     border: 1px solid rgba(255,255,255,.98);
 
     box-shadow:
-        -30px 0 75px rgba(57,29,38,.16),
+        30px 0 75px rgba(57,29,38,.16),
         inset 0 1px 0 rgba(255,255,255,1);
 
     backdrop-filter: blur(35px);
     -webkit-backdrop-filter: blur(35px);
 
-    transform: translateX(calc(100% + 50px));
+    transform:
+        translateX(
+            calc(-100% - 50px)
+        );
 
     transition:
         transform .58s cubic-bezier(.22,1,.36,1);
@@ -602,9 +671,9 @@ body.menu-open .sidebar {
 }
 
 
-/* =====================================================
+/* =========================
    SIDEBAR HEADER
-===================================================== */
+========================= */
 
 .sidebar-header {
     display: flex;
@@ -633,6 +702,8 @@ body.menu-open .sidebar {
 }
 
 .sidebar-title {
+    max-width: 300px;
+
     color: #412930;
 
     font-family: "Cormorant Garamond", serif;
@@ -647,25 +718,26 @@ body.menu-open .sidebar {
 
 /* CLOSE */
 
-.close {
+.close-button {
     width: 40px;
     height: 40px;
+
+    flex-shrink: 0;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    flex-shrink: 0;
-
     border: 1px solid rgba(169,101,124,.15);
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.72);
+    background:
+        rgba(255,255,255,.72);
 
     color: #914c66;
 
-    font-size: 21px;
+    font-size: 22px;
 
     cursor: pointer;
 
@@ -674,16 +746,16 @@ body.menu-open .sidebar {
         background .3s ease;
 }
 
-.close:hover {
+.close-button:hover {
     transform: rotate(90deg);
 
-    background: #f3d2de;
+    background: #f2ceda;
 }
 
 
-/* =====================================================
-   CATEGORY LIST
-===================================================== */
+/* =========================
+   CATEGORIES
+========================= */
 
 .category-list {
     margin-top: 16px;
@@ -721,9 +793,6 @@ body.menu-open .sidebar {
     padding-left: 13px;
 }
 
-
-/* NUMBER */
-
 .category-number {
     color: #c46f8c;
 
@@ -732,10 +801,9 @@ body.menu-open .sidebar {
     font-size: 16px;
 }
 
-
-/* TEXT */
-
 .category-name {
+    display: block;
+
     color: #492f37;
 
     font-family: "Cormorant Garamond", serif;
@@ -746,6 +814,8 @@ body.menu-open .sidebar {
 }
 
 .category-description {
+    display: block;
+
     margin-top: 4px;
 
     color: #987781;
@@ -754,9 +824,6 @@ body.menu-open .sidebar {
 
     font-weight: 300;
 }
-
-
-/* ARROW */
 
 .category-arrow {
     width: 29px;
@@ -768,9 +835,10 @@ body.menu-open .sidebar {
 
     border-radius: 50%;
 
-    background: rgba(255,255,255,.68);
-
     color: #b04d73;
+
+    background:
+        rgba(255,255,255,.68);
 
     transition:
         transform .3s ease,
@@ -784,9 +852,9 @@ body.menu-open .sidebar {
 }
 
 
-/* =====================================================
+/* =========================
    SIDEBAR FOOTER
-===================================================== */
+========================= */
 
 .sidebar-footer {
     margin-top: 28px;
@@ -808,7 +876,7 @@ body.menu-open .sidebar {
         0 16px 35px rgba(184,79,120,.18);
 }
 
-.footer-label {
+.footer-small {
     font-size: 8px;
 
     letter-spacing: 2.5px;
@@ -818,7 +886,7 @@ body.menu-open .sidebar {
     opacity: .72;
 }
 
-.footer-title {
+.footer-big {
     margin-top: 7px;
 
     font-family: "Cormorant Garamond", serif;
@@ -837,15 +905,15 @@ body.menu-open .sidebar {
 }
 
 
-/* =====================================================
+/* =========================
    ANIMATION
-===================================================== */
+========================= */
 
-@keyframes heroAppear {
+@keyframes appear {
 
     from {
         opacity: 0;
-        transform: translateY(25px);
+        transform: translateY(22px);
     }
 
     to {
@@ -856,13 +924,13 @@ body.menu-open .sidebar {
 }
 
 
-/* =====================================================
+/* =========================
    TABLET
-===================================================== */
+========================= */
 
-@media(max-width: 900px) {
+@media (max-width: 850px) {
 
-    .top-nav {
+    .navbar {
         width: calc(100% - 30px);
     }
 
@@ -871,33 +939,38 @@ body.menu-open .sidebar {
     }
 
     .hero {
-        padding-left: 55px;
-    }
-
-    .hero-content {
-        margin-left: 0;
+        padding-left: 80px;
+        padding-right: 80px;
     }
 
 }
 
 
-/* =====================================================
+/* =========================
    MOBILE
-===================================================== */
+========================= */
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
 
-    .top-nav {
+    .navbar {
         top: 14px;
 
         width: calc(100% - 24px);
 
         height: 58px;
 
-        padding-left: 14px;
-        padding-right: 10px;
+        padding:
+            0
+            10px
+            0
+            14px;
 
         border-radius: 19px;
+    }
+
+    .logo-heart {
+        width: 31px;
+        height: 31px;
     }
 
     .logo-name {
@@ -912,72 +985,115 @@ body.menu-open .sidebar {
         font-size: 10px;
     }
 
+
+    /* HERO */
+
     .hero {
         min-height: 100svh;
 
         padding:
-            130px 25px
-            55px;
-
-        align-items: center;
+            120px
+            45px
+            50px;
     }
 
     .hero-content {
         width: 100%;
     }
 
+
+    /* EYEBROW */
+
     .eyebrow {
-        font-size: 8px;
+        gap: 8px;
 
-        letter-spacing: 2.4px;
+        margin-bottom: 24px;
 
-        margin-bottom: 23px;
+        font-size: 7px;
+
+        letter-spacing: 2.2px;
     }
 
-    .title {
-        font-size: 66px;
-
-        letter-spacing: -3px;
+    .eyebrow-line {
+        width: 20px;
     }
 
-    .title-script {
-        margin-top: 15px;
+
+    /*
+       FOARTE IMPORTANT:
+       Titlul nu mai poate ieși
+       din ecran.
+    */
+
+    .title-first {
+        font-size: clamp(
+            47px,
+            15vw,
+            72px
+        );
+
+        white-space: normal;
     }
+
+    .title-second {
+        margin-top: 5px;
+
+        font-size: clamp(
+            59px,
+            18vw,
+            88px
+        );
+
+        white-space: normal;
+    }
+
 
     .description {
-        width: 100%;
+        margin-top: 30px;
 
-        margin-top: 31px;
+        font-size: 12px;
 
-        font-size: 13px;
+        line-height: 1.8;
     }
 
-    .buttons {
+
+    .hero-buttons {
         flex-wrap: wrap;
 
         margin-top: 25px;
     }
 
-    .primary,
-    .secondary {
+    .hero-button {
         height: 44px;
 
         padding: 0 17px;
     }
+
+
+    /* MENU */
 
     .menu-trigger {
         width: 48px;
         height: 120px;
     }
 
+    .menu-trigger:hover {
+        width: 53px;
+    }
+
+
+    /* SIDEBAR */
+
     .sidebar {
         top: 7px;
-        right: 7px;
+        left: 7px;
         bottom: 7px;
 
         width: calc(100% - 14px);
 
-        padding: 27px 23px;
+        padding:
+            27px
+            23px;
 
         border-radius: 25px;
     }
@@ -994,7 +1110,9 @@ body.menu-open .sidebar {
 
         gap: 11px;
 
-        padding: 18px 3px;
+        padding:
+            18px
+            3px;
     }
 
     .category-name {
@@ -1004,11 +1122,11 @@ body.menu-open .sidebar {
 }
 
 
-/* =====================================================
-   ACCESSIBILITY
-===================================================== */
+/* =========================
+   REDUCED MOTION
+========================= */
 
-@media(prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
 
     *,
     *::before,
@@ -1026,21 +1144,19 @@ body.menu-open .sidebar {
 <body>
 
 
-<!-- BACKGROUND -->
-
-<div class="light light-one"></div>
-<div class="light light-two"></div>
+<div class="satin-light satin-one"></div>
+<div class="satin-light satin-two"></div>
 
 
-<!-- =====================================================
+<!-- =========================
      NAVBAR
-===================================================== -->
+========================= -->
 
-<header class="top-nav">
+<header class="navbar">
 
     <a href="#" class="logo">
 
-        <span class="logo-icon">
+        <span class="logo-heart">
             ♥
         </span>
 
@@ -1079,14 +1195,13 @@ body.menu-open .sidebar {
 </header>
 
 
-
-<!-- =====================================================
+<!-- =========================
      HOME
-===================================================== -->
+========================= -->
 
 <main class="hero">
 
-    <section class="hero-content">
+    <div class="hero-content">
 
 
         <div class="eyebrow">
@@ -1100,50 +1215,49 @@ body.menu-open .sidebar {
         </div>
 
 
-        <h1 class="title">
+        <div class="main-title">
 
-            <span class="title-top">
+            <span class="title-first">
                 Your perfect
             </span>
 
-            <span class="title-script">
+            <span class="title-second">
                 Wedding
             </span>
 
-        </h1>
+        </div>
 
 
         <p class="description">
 
-            Un spațiu elegant pentru toate detaliile
-            zilei voastre. De la primele idei până la
-            ultimul moment al nunții.
+            Tot ce ai nevoie pentru a transforma
+            ziua nunții tale într-o experiență
+            perfect organizată, elegantă și memorabilă.
 
         </p>
 
 
-        <div class="buttons">
+        <div class="hero-buttons">
 
-            <a href="#" class="primary">
+            <a href="#" class="hero-button primary">
                 Începe să planifici
             </a>
 
-            <a href="#" class="secondary">
+            <a href="#" class="hero-button secondary">
                 Descoperă planner-ul
             </a>
 
         </div>
 
 
-    </section>
+    </div>
 
 </main>
 
 
-
-<!-- =====================================================
-     MENU TAB
-===================================================== -->
+<!-- =========================
+     LEFT MENU BUTTON
+========================= -->
 
 <button
     class="menu-trigger"
@@ -1152,14 +1266,14 @@ body.menu-open .sidebar {
     aria-expanded="false"
 >
 
-    <span class="menu-trigger-content">
+    <span class="menu-trigger-inner">
 
-        <span class="menu-text">
+        <span class="menu-word">
             MENU
         </span>
 
         <span class="menu-arrow">
-            ←
+            →
         </span>
 
     </span>
@@ -1167,10 +1281,9 @@ body.menu-open .sidebar {
 </button>
 
 
-
-<!-- =====================================================
+<!-- =========================
      OVERLAY
-===================================================== -->
+========================= -->
 
 <div
     class="overlay"
@@ -1178,10 +1291,9 @@ body.menu-open .sidebar {
 ></div>
 
 
-
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+<!-- =========================
+     LEFT SIDEBAR
+========================= -->
 
 <aside
     class="sidebar"
@@ -1190,14 +1302,12 @@ body.menu-open .sidebar {
 >
 
 
-    <!-- HEADER -->
-
     <div class="sidebar-header">
 
         <div>
 
             <div class="sidebar-label">
-                The Wedding Edit
+                THE WEDDING EDIT
             </div>
 
             <h2 class="sidebar-title">
@@ -1208,7 +1318,7 @@ body.menu-open .sidebar {
 
 
         <button
-            class="close"
+            class="close-button"
             id="closeButton"
             aria-label="Închide meniul"
         >
@@ -1217,9 +1327,6 @@ body.menu-open .sidebar {
 
     </div>
 
-
-
-    <!-- CATEGORIES -->
 
     <div class="category-list">
 
@@ -1231,7 +1338,6 @@ body.menu-open .sidebar {
             </span>
 
             <span>
-
                 <span class="category-name">
                     Checklist
                 </span>
@@ -1239,7 +1345,6 @@ body.menu-open .sidebar {
                 <span class="category-description">
                     Organizează fiecare pas al nunții
                 </span>
-
             </span>
 
             <span class="category-arrow">
@@ -1256,7 +1361,6 @@ body.menu-open .sidebar {
             </span>
 
             <span>
-
                 <span class="category-name">
                     Buget
                 </span>
@@ -1264,7 +1368,6 @@ body.menu-open .sidebar {
                 <span class="category-description">
                     Planifică și urmărește cheltuielile
                 </span>
-
             </span>
 
             <span class="category-arrow">
@@ -1281,7 +1384,6 @@ body.menu-open .sidebar {
             </span>
 
             <span>
-
                 <span class="category-name">
                     Invitați
                 </span>
@@ -1289,7 +1391,6 @@ body.menu-open .sidebar {
                 <span class="category-description">
                     Lista invitaților și confirmările
                 </span>
-
             </span>
 
             <span class="category-arrow">
@@ -1306,7 +1407,6 @@ body.menu-open .sidebar {
             </span>
 
             <span>
-
                 <span class="category-name">
                     Furnizori
                 </span>
@@ -1314,7 +1414,6 @@ body.menu-open .sidebar {
                 <span class="category-description">
                     Foto, video, muzică, flori și decor
                 </span>
-
             </span>
 
             <span class="category-arrow">
@@ -1331,7 +1430,6 @@ body.menu-open .sidebar {
             </span>
 
             <span>
-
                 <span class="category-name">
                     Locație & Mese
                 </span>
@@ -1339,7 +1437,6 @@ body.menu-open .sidebar {
                 <span class="category-description">
                     Așezarea meselor și organizarea sălii
                 </span>
-
             </span>
 
             <span class="category-arrow">
@@ -1356,7 +1453,6 @@ body.menu-open .sidebar {
             </span>
 
             <span>
-
                 <span class="category-name">
                     Timeline
                 </span>
@@ -1364,7 +1460,6 @@ body.menu-open .sidebar {
                 <span class="category-description">
                     Programul și momentele zilei
                 </span>
-
             </span>
 
             <span class="category-arrow">
@@ -1377,16 +1472,13 @@ body.menu-open .sidebar {
     </div>
 
 
-
-    <!-- FOOTER -->
-
     <div class="sidebar-footer">
 
-        <div class="footer-label">
-            Your wedding
+        <div class="footer-small">
+            YOUR WEDDING
         </div>
 
-        <div class="footer-title">
+        <div class="footer-big">
             Let the planning begin.
         </div>
 
@@ -1400,11 +1492,6 @@ body.menu-open .sidebar {
 
 </aside>
 
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
 
 <script>
 
@@ -1423,10 +1510,6 @@ const sidebar =
     document.getElementById("sidebar");
 
 
-/* ==========================
-   OPEN
-========================== */
-
 function openMenu() {
 
     body.classList.add("menu-open");
@@ -1443,10 +1526,6 @@ function openMenu() {
 
 }
 
-
-/* ==========================
-   CLOSE
-========================== */
 
 function closeMenu() {
 
@@ -1465,10 +1544,6 @@ function closeMenu() {
 }
 
 
-/* ==========================
-   EVENTS
-========================== */
-
 menuTrigger.addEventListener(
     "click",
     openMenu
@@ -1485,10 +1560,6 @@ overlay.addEventListener(
 );
 
 
-/* ==========================
-   ESC
-========================== */
-
 document.addEventListener(
     "keydown",
     function(event) {
@@ -1497,24 +1568,23 @@ document.addEventListener(
             event.key === "Escape" &&
             body.classList.contains("menu-open")
         ) {
-
             closeMenu();
-
         }
 
     }
 );
 
 
-/* ==========================
-   TEMPORARY CATEGORY LINKS
-========================== */
+/*
+   Pentru moment categoriile nu duc nicăieri.
+   Le vom transforma în pagini reale ulterior.
+*/
 
 document
     .querySelectorAll(".category")
-    .forEach(function(category) {
+    .forEach(function(item) {
 
-        category.addEventListener(
+        item.addEventListener(
             "click",
             function(event) {
 
@@ -1526,7 +1596,6 @@ document
     });
 
 </script>
-
 
 </body>
 </html>
