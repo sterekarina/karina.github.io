@@ -1,1751 +1,1531 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>The Wedding Edit</title>
+<title>The Wedding Edit</title>
 
-    <!-- ==============================
-         FONTS
-    =============================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
 
+/* =====================================================
+   RESET
+===================================================== */
 
-    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* =====================================================
-           RESET
-        ===================================================== */
+html {
+    scroll-behavior: smooth;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+body {
+    min-height: 100vh;
 
+    font-family: "DM Sans", sans-serif;
 
-        html {
-            scroll-behavior: smooth;
-        }
+    color: #3d2930;
 
+    background:
+        radial-gradient(
+            circle at 78% 20%,
+            rgba(239, 139, 171, .18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 18% 85%,
+            rgba(245, 184, 200, .18),
+            transparent 34%
+        ),
+        #fbf6f1;
 
-        body {
-            min-height: 100vh;
+    overflow-x: hidden;
+}
 
-            font-family: "DM Sans", sans-serif;
+body.menu-open {
+    overflow: hidden;
+}
 
-            color: #38252c;
 
-            background:
-                radial-gradient(
-                    circle at 82% 12%,
-                    rgba(240, 153, 181, 0.23),
-                    transparent 29%
-                ),
-                radial-gradient(
-                    circle at 15% 88%,
-                    rgba(250, 197, 210, 0.20),
-                    transparent 30%
-                ),
-                linear-gradient(
-                    135deg,
-                    #fffaf7 0%,
-                    #fdf5f1 48%,
-                    #fff9f6 100%
-                );
+/* =====================================================
+   BACKGROUND LIGHT
+===================================================== */
 
-            overflow-x: hidden;
-        }
+.light {
+    position: fixed;
 
+    width: 550px;
+    height: 550px;
 
-        body.menu-open {
-            overflow: hidden;
-        }
+    border-radius: 50%;
 
+    filter: blur(120px);
 
-        /* =====================================================
-           BACKGROUND
-        ===================================================== */
+    pointer-events: none;
 
-        .ambient-light {
-            position: fixed;
+    z-index: -1;
+}
 
-            width: 520px;
-            height: 520px;
+.light-one {
+    top: -280px;
+    right: -100px;
 
-            border-radius: 50%;
+    background: rgba(226, 105, 148, .13);
+}
 
-            pointer-events: none;
+.light-two {
+    bottom: -330px;
+    left: -180px;
 
-            filter: blur(110px);
+    background: rgba(247, 188, 204, .15);
+}
 
-            z-index: -1;
-        }
 
+/* =====================================================
+   TOP NAVIGATION
+===================================================== */
 
-        .ambient-one {
-            top: -260px;
-            right: -100px;
+.top-nav {
+    position: fixed;
 
-            background: rgba(225, 112, 151, 0.15);
-        }
+    top: 28px;
+    left: 50%;
 
+    transform: translateX(-50%);
 
-        .ambient-two {
-            bottom: -300px;
-            left: -150px;
+    width: min(1110px, calc(100% - 70px));
 
-            background: rgba(247, 189, 205, 0.20);
-        }
+    height: 64px;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        /* =====================================================
-           NAVIGATION
-        ===================================================== */
+    padding: 0 20px;
 
-        .top-nav {
-            position: fixed;
+    border: 1px solid rgba(255,255,255,.95);
 
-            top: 28px;
-            left: 50%;
+    border-radius: 22px;
 
-            transform: translateX(-50%);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.88),
+            rgba(255,247,244,.76)
+        );
 
-            width: min(1110px, calc(100% - 70px));
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
 
-            height: 64px;
+    box-shadow:
+        0 20px 50px rgba(75,40,51,.07),
+        inset 0 1px 0 rgba(255,255,255,.95);
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+    z-index: 100;
+}
 
-            padding: 0 18px 0 20px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255, 255, 255, 0.82),
-                    rgba(255, 247, 245, 0.70)
-                );
+/* LOGO */
 
-            border: 1px solid rgba(255, 255, 255, 0.90);
+.logo {
+    display: flex;
+    align-items: center;
 
-            border-radius: 23px;
+    gap: 11px;
 
-            box-shadow:
-                0 18px 45px rgba(92, 47, 61, 0.07),
-                inset 0 1px 0 rgba(255,255,255,0.9);
+    text-decoration: none;
 
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+    color: #4c3039;
+}
 
-            z-index: 500;
-        }
+.logo-icon {
+    width: 32px;
+    height: 32px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        .brand {
-            display: flex;
-            align-items: center;
+    border-radius: 50%;
 
-            gap: 11px;
+    color: white;
 
-            color: #4b3039;
+    background:
+        linear-gradient(
+            145deg,
+            #efa6be,
+            #d76c96
+        );
 
-            text-decoration: none;
-        }
+    box-shadow:
+        0 7px 20px rgba(205,94,136,.24);
+}
 
+.logo-name {
+    font-family: "Cormorant Garamond", serif;
 
-        .brand-mark {
-            width: 32px;
-            height: 32px;
+    font-size: 23px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    font-weight: 600;
+}
 
-            border-radius: 50%;
 
-            color: white;
+/* NAVIGATION LINKS */
 
-            font-family: Georgia, serif;
+.nav-links {
+    display: flex;
+    gap: 7px;
+}
 
-            font-size: 14px;
+.nav-links a {
+    padding: 9px 14px;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #efa9c0,
-                    #d86e98
-                );
+    text-decoration: none;
 
-            box-shadow:
-                0 7px 18px rgba(210, 103, 143, 0.24);
-        }
+    color: #765962;
 
+    font-size: 12px;
 
-        .brand-name {
-            font-family: "Cormorant Garamond", serif;
+    transition: color .25s ease;
+}
 
-            font-size: 23px;
+.nav-links a:hover {
+    color: #b44870;
+}
 
-            font-weight: 600;
 
-            letter-spacing: -0.3px;
-        }
+/* NAV BUTTON */
 
+.nav-button {
+    height: 40px;
 
-        .navigation {
-            display: flex;
-            align-items: center;
+    padding: 0 20px;
 
-            gap: 4px;
-        }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    border-radius: 14px;
 
-        .navigation a {
-            position: relative;
+    color: white;
 
-            padding: 10px 14px;
+    background:
+        linear-gradient(
+            135deg,
+            #d8799d,
+            #bd507b
+        );
 
-            color: #755c64;
+    text-decoration: none;
 
-            text-decoration: none;
+    font-size: 12px;
 
-            font-size: 12px;
+    box-shadow:
+        0 9px 25px rgba(185,76,119,.20);
 
-            font-weight: 500;
+    transition: .3s ease;
+}
 
-            transition: color .25s ease;
-        }
+.nav-button:hover {
+    transform: translateY(-2px);
 
+    box-shadow:
+        0 13px 30px rgba(185,76,119,.28);
+}
 
-        .navigation a::after {
-            content: "";
 
-            position: absolute;
+/* =====================================================
+   HERO
+===================================================== */
 
-            left: 14px;
-            right: 14px;
-            bottom: 5px;
+.hero {
+    min-height: 100vh;
 
-            height: 1px;
+    width: min(1380px, 100%);
 
-            transform: scaleX(0);
+    margin: auto;
 
-            transform-origin: center;
+    display: flex;
+    align-items: center;
 
-            background: #d16b92;
+    padding:
+        140px 80px
+        70px;
+}
 
-            transition: transform .25s ease;
-        }
 
+/* CONTINUTUL PRINCIPAL */
 
-        .navigation a:hover {
-            color: #b64e77;
-        }
+.hero-content {
+    width: 700px;
 
+    margin-left: 55px;
 
-        .navigation a:hover::after {
-            transform: scaleX(1);
-        }
+    animation:
+        heroAppear .9s cubic-bezier(.22,1,.36,1) both;
+}
 
 
-        .start-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+/* EYEBROW */
 
-            height: 40px;
+.eyebrow {
+    display: flex;
+    align-items: center;
 
-            padding: 0 19px;
+    gap: 12px;
 
-            border-radius: 14px;
+    margin-bottom: 28px;
 
-            color: white;
+    color: #b96783;
 
-            text-decoration: none;
+    font-size: 10px;
 
-            font-size: 12px;
-            font-weight: 500;
+    font-weight: 500;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #d8799c,
-                    #bd527c
-                );
+    letter-spacing: 3.5px;
 
-            box-shadow:
-                0 9px 22px rgba(186, 78, 120, 0.22);
+    text-transform: uppercase;
+}
 
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease;
-        }
+.eyebrow-line {
+    width: 30px;
+    height: 1px;
 
+    background: #d995aa;
+}
 
-        .start-button:hover {
-            transform: translateY(-2px);
 
-            box-shadow:
-                0 13px 28px rgba(186, 78, 120, 0.29);
-        }
+/* TITLE */
 
+.title {
+    font-family: "Cormorant Garamond", serif;
 
-        /* =====================================================
-           HERO
-        ===================================================== */
+    color: #402a31;
 
-        .hero {
-            min-height: 100vh;
+    font-size: clamp(78px, 8.3vw, 126px);
 
-            width: min(1380px, 100%);
+    font-weight: 500;
 
-            margin: 0 auto;
+    line-height: .77;
 
-            padding:
-                170px 100px
-                70px;
+    letter-spacing: -5px;
+}
 
-            display: flex;
+.title-top {
+    display: block;
+}
 
-            align-items: center;
-        }
+.title-script {
+    display: block;
 
+    margin-top: 18px;
+    margin-left: 3px;
 
-        .hero-content {
-            width: 720px;
+    font-family: "Great Vibes", cursive;
 
-            padding-left: 5px;
+    font-size: 1.08em;
 
-            animation: heroEnter .9s cubic-bezier(.22,1,.36,1) both;
-        }
+    font-weight: 400;
 
+    letter-spacing: -1px;
 
-        .eyebrow {
-            display: flex;
-            align-items: center;
+    background:
+        linear-gradient(
+            105deg,
+            #a84469,
+            #d46d94 50%,
+            #b54c76
+        );
 
-            gap: 12px;
+    -webkit-background-clip: text;
+    background-clip: text;
 
-            margin-bottom: 28px;
+    color: transparent;
+}
 
-            color: #bc708a;
 
-            font-size: 10px;
+/* DESCRIPTION */
 
-            font-weight: 500;
+.description {
+    width: 450px;
 
-            letter-spacing: 3.5px;
+    margin-top: 42px;
 
-            text-transform: uppercase;
-        }
+    color: #795e68;
 
+    font-size: 14px;
 
-        .eyebrow-line {
-            width: 32px;
-            height: 1px;
+    line-height: 1.85;
 
-            background: #d995aa;
-        }
+    font-weight: 300;
+}
 
 
-        .hero-title {
-            font-family: "Cormorant Garamond", serif;
+/* BUTTONS */
 
-            color: #3d272e;
+.buttons {
+    display: flex;
 
-            font-size: clamp(72px, 8vw, 122px);
+    gap: 12px;
 
-            line-height: .78;
+    margin-top: 30px;
+}
 
-            font-weight: 500;
+.primary,
+.secondary {
+    height: 47px;
 
-            letter-spacing: -5px;
-        }
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
+    padding: 0 22px;
 
-        .hero-title .perfect {
-            display: block;
-        }
+    border-radius: 15px;
 
+    text-decoration: none;
 
-        .hero-title .wedding {
-            display: block;
+    font-size: 12px;
 
-            margin-top: 17px;
+    transition: .3s ease;
+}
 
-            margin-left: 5px;
+.primary {
+    color: white;
 
-            font-family: "Great Vibes", cursive;
+    background:
+        linear-gradient(
+            135deg,
+            #d6799d,
+            #bc507b
+        );
 
-            font-size: 1.06em;
+    box-shadow:
+        0 12px 28px rgba(185,78,119,.20);
+}
 
-            font-weight: 400;
+.primary:hover {
+    transform: translateY(-2px);
 
-            line-height: .8;
+    box-shadow:
+        0 16px 32px rgba(185,78,119,.28);
+}
 
-            letter-spacing: -1px;
+.secondary {
+    color: #704f59;
 
-            background:
-                linear-gradient(
-                    105deg,
-                    #9f4568,
-                    #d76e97 48%,
-                    #b34b76
-                );
+    background: rgba(255,255,255,.58);
 
-            -webkit-background-clip: text;
-            background-clip: text;
+    border: 1px solid rgba(210,174,185,.42);
+}
 
-            color: transparent;
-        }
+.secondary:hover {
+    background: white;
 
+    transform: translateY(-2px);
+}
 
-        .hero-description {
-            width: 440px;
 
-            margin-top: 39px;
+/* =====================================================
+   RIGHT MENU BUTTON
+===================================================== */
 
-            color: #80666e;
+.menu-trigger {
+    position: fixed;
 
-            font-size: 14px;
+    right: 0;
+    top: 50%;
 
-            font-weight: 300;
+    transform: translateY(-50%);
 
-            line-height: 1.9;
-        }
+    width: 55px;
+    height: 145px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        /* =====================================================
-           HERO BUTTONS
-        ===================================================== */
+    border: 1px solid rgba(255,255,255,.95);
+    border-right: none;
 
-        .hero-buttons {
-            display: flex;
-            align-items: center;
+    border-radius: 19px 0 0 19px;
 
-            gap: 12px;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,246,248,.96),
+            rgba(248,215,226,.94)
+        );
 
-            margin-top: 30px;
-        }
+    color: #a4486b;
 
+    cursor: pointer;
 
-        .hero-primary,
-        .hero-secondary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+    box-shadow:
+        -10px 0 35px rgba(75,39,51,.09);
 
-            height: 47px;
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
 
-            padding: 0 22px;
+    z-index: 200;
 
-            border-radius: 15px;
+    transition:
+        width .3s ease,
+        opacity .3s ease;
+}
 
-            text-decoration: none;
+.menu-trigger:hover {
+    width: 63px;
+}
 
-            font-size: 12px;
+.menu-trigger-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-            transition: all .3s ease;
-        }
+    gap: 9px;
+}
 
+.menu-text {
+    font-size: 9px;
 
-        .hero-primary {
-            color: white;
+    font-weight: 600;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #d77a9d,
-                    #bd527d
-                );
+    letter-spacing: 3px;
 
-            box-shadow:
-                0 12px 26px rgba(188, 81, 126, .20);
-        }
+    writing-mode: vertical-rl;
+}
 
+.menu-arrow {
+    font-size: 17px;
 
-        .hero-primary:hover {
-            transform: translateY(-2px);
+    transition: transform .3s ease;
+}
 
-            box-shadow:
-                0 16px 30px rgba(188, 81, 126, .28);
-        }
+.menu-trigger:hover .menu-arrow {
+    transform: translateX(-3px);
+}
 
 
-        .hero-secondary {
-            color: #714f59;
+/* ASCUNDEM BUTONUL CÂND SIDEBAR-UL ESTE DESCHIS */
 
-            background: rgba(255,255,255,.57);
+body.menu-open .menu-trigger {
+    opacity: 0;
+    pointer-events: none;
+}
 
-            border: 1px solid rgba(213, 175, 185, .40);
-        }
 
+/* =====================================================
+   OVERLAY
+===================================================== */
 
-        .hero-secondary:hover {
-            background: rgba(255,255,255,.9);
+.overlay {
+    position: fixed;
 
-            transform: translateY(-2px);
-        }
+    inset: 0;
 
+    background:
+        rgba(45,25,32,.20);
 
-        /* =====================================================
-           RIGHT MENU TAB
-        ===================================================== */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
-        .menu-tab {
-            position: fixed;
+    opacity: 0;
+    visibility: hidden;
 
-            right: 0;
-            top: 50%;
+    transition:
+        opacity .45s ease,
+        visibility .45s ease;
 
-            transform: translateY(-50%);
+    z-index: 500;
+}
 
-            width: 54px;
-            height: 142px;
+body.menu-open .overlay {
+    opacity: 1;
+    visibility: visible;
+}
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            writing-mode: vertical-rl;
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
-            color: #8f435f;
+.sidebar {
+    position: fixed;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(255, 244, 247, .94),
-                    rgba(249, 220, 229, .90)
-                );
+    top: 12px;
+    right: 12px;
+    bottom: 12px;
 
-            border: 1px solid rgba(255,255,255,.9);
+    width: min(440px, calc(100% - 24px));
 
-            border-right: none;
+    padding: 34px;
 
-            border-radius: 19px 0 0 19px;
+    border-radius: 30px;
 
-            box-shadow:
-                -10px 0 35px rgba(104, 51, 68, .09);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,252,250,.98),
+            rgba(250,229,235,.97)
+        );
 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.98);
 
-            cursor: pointer;
+    box-shadow:
+        -30px 0 75px rgba(57,29,38,.16),
+        inset 0 1px 0 rgba(255,255,255,1);
 
-            font-size: 10px;
+    backdrop-filter: blur(35px);
+    -webkit-backdrop-filter: blur(35px);
 
-            font-weight: 600;
+    transform: translateX(calc(100% + 50px));
 
-            letter-spacing: 3px;
+    transition:
+        transform .58s cubic-bezier(.22,1,.36,1);
 
-            z-index: 400;
+    z-index: 600;
 
-            transition:
-                width .3s ease,
-                background .3s ease;
-        }
+    overflow-y: auto;
+}
 
+body.menu-open .sidebar {
+    transform: translateX(0);
+}
 
-        .menu-tab:hover {
-            width: 61px;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(255, 237, 243, .98),
-                    rgba(247, 207, 220, .96)
-                );
-        }
+/* =====================================================
+   SIDEBAR HEADER
+===================================================== */
 
+.sidebar-header {
+    display: flex;
 
-        .menu-tab-inner {
-            display: flex;
-            align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
 
-            gap: 9px;
-        }
+    padding-bottom: 27px;
 
+    border-bottom:
+        1px solid rgba(163,96,117,.13);
+}
 
-        .menu-arrow {
-            font-size: 14px;
+.sidebar-label {
+    margin-bottom: 8px;
 
-            transition: transform .3s ease;
-        }
+    color: #b65b7e;
 
+    font-size: 9px;
 
-        .menu-tab:hover .menu-arrow {
-            transform: translateY(-3px);
-        }
+    font-weight: 600;
 
+    letter-spacing: 3px;
 
-        body.menu-open .menu-tab {
-            opacity: 0;
+    text-transform: uppercase;
+}
 
-            pointer-events: none;
-        }
+.sidebar-title {
+    color: #412930;
 
+    font-family: "Cormorant Garamond", serif;
 
-        /* =====================================================
-           OVERLAY
-        ===================================================== */
+    font-size: 36px;
 
-        .overlay {
-            position: fixed;
+    font-weight: 500;
 
-            inset: 0;
+    line-height: 1;
+}
 
-            background:
-                rgba(49, 29, 36, .16);
 
-            backdrop-filter: blur(7px);
-            -webkit-backdrop-filter: blur(7px);
+/* CLOSE */
 
-            opacity: 0;
-            visibility: hidden;
+.close {
+    width: 40px;
+    height: 40px;
 
-            transition:
-                opacity .4s ease,
-                visibility .4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            z-index: 800;
-        }
+    flex-shrink: 0;
 
+    border: 1px solid rgba(169,101,124,.15);
 
-        body.menu-open .overlay {
-            opacity: 1;
-            visibility: visible;
-        }
+    border-radius: 50%;
 
+    background: rgba(255,255,255,.72);
 
-        /* =====================================================
-           SIDE PANEL
-        ===================================================== */
+    color: #914c66;
 
-        .side-panel {
-            position: fixed;
+    font-size: 21px;
 
-            top: 12px;
-            right: 12px;
-            bottom: 12px;
+    cursor: pointer;
 
-            width: min(430px, calc(100% - 24px));
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
 
-            padding: 36px 34px;
+.close:hover {
+    transform: rotate(90deg);
 
-            border-radius: 30px;
+    background: #f3d2de;
+}
 
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255, 252, 250, .97),
-                    rgba(250, 230, 235, .96)
-                );
 
-            border: 1px solid rgba(255,255,255,.92);
+/* =====================================================
+   CATEGORY LIST
+===================================================== */
 
-            box-shadow:
-                -25px 0 70px rgba(64, 34, 44, .15),
-                inset 0 1px 0 rgba(255,255,255,.95);
+.category-list {
+    margin-top: 16px;
+}
 
-            backdrop-filter: blur(35px);
-            -webkit-backdrop-filter: blur(35px);
+.category {
+    display: grid;
 
-            transform: translateX(calc(100% + 40px));
+    grid-template-columns:
+        40px
+        1fr
+        30px;
 
-            transition:
-                transform .55s cubic-bezier(.22,1,.36,1);
+    align-items: center;
 
-            z-index: 900;
+    gap: 15px;
 
-            overflow-y: auto;
-        }
+    padding: 21px 5px;
 
+    text-decoration: none;
 
-        body.menu-open .side-panel {
-            transform: translateX(0);
-        }
+    border-bottom:
+        1px solid rgba(163,96,117,.12);
 
+    transition:
+        padding .3s ease;
+}
 
-        /* =====================================================
-           PANEL HEADER
-        ===================================================== */
+.category:first-child {
+    border-top:
+        1px solid rgba(163,96,117,.12);
+}
 
-        .panel-header {
-            display: flex;
+.category:hover {
+    padding-left: 13px;
+}
 
-            align-items: flex-start;
-            justify-content: space-between;
 
-            padding-bottom: 27px;
+/* NUMBER */
 
-            border-bottom: 1px solid rgba(169, 104, 124, .13);
-        }
+.category-number {
+    color: #c46f8c;
 
+    font-family: "Cormorant Garamond", serif;
 
-        .panel-small {
-            margin-bottom: 8px;
+    font-size: 16px;
+}
 
-            color: #b85d80;
 
-            font-size: 9px;
+/* TEXT */
 
-            font-weight: 600;
+.category-name {
+    color: #492f37;
 
-            letter-spacing: 3px;
+    font-family: "Cormorant Garamond", serif;
 
-            text-transform: uppercase;
-        }
+    font-size: 23px;
 
+    font-weight: 500;
+}
 
-        .panel-title {
-            color: #432b33;
+.category-description {
+    margin-top: 4px;
 
-            font-family: "Cormorant Garamond", serif;
+    color: #987781;
 
-            font-size: 35px;
+    font-size: 10px;
 
-            font-weight: 500;
+    font-weight: 300;
+}
 
-            line-height: 1;
-        }
 
+/* ARROW */
 
-        .close-menu {
-            width: 39px;
-            height: 39px;
+.category-arrow {
+    width: 29px;
+    height: 29px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-            flex-shrink: 0;
+    border-radius: 50%;
 
-            border: 1px solid rgba(173, 102, 126, .13);
+    background: rgba(255,255,255,.68);
 
-            border-radius: 50%;
+    color: #b04d73;
 
-            background: rgba(255,255,255,.65);
+    transition:
+        transform .3s ease,
+        background .3s ease;
+}
 
-            color: #8c5368;
+.category:hover .category-arrow {
+    transform: translateX(4px);
 
-            font-size: 20px;
+    background: #f2cad7;
+}
 
-            cursor: pointer;
 
-            transition:
-                transform .3s ease,
-                background .3s ease;
-        }
+/* =====================================================
+   SIDEBAR FOOTER
+===================================================== */
 
+.sidebar-footer {
+    margin-top: 28px;
 
-        .close-menu:hover {
-            transform: rotate(90deg);
+    padding: 22px;
 
-            background: #f4d4df;
-        }
+    border-radius: 21px;
 
+    color: white;
 
-        /* =====================================================
-           CATEGORIES
-        ===================================================== */
+    background:
+        linear-gradient(
+            135deg,
+            #d781a1,
+            #c15982
+        );
 
-        .categories {
-            margin-top: 18px;
-        }
+    box-shadow:
+        0 16px 35px rgba(184,79,120,.18);
+}
 
+.footer-label {
+    font-size: 8px;
 
-        .category {
-            position: relative;
+    letter-spacing: 2.5px;
 
-            display: grid;
+    text-transform: uppercase;
 
-            grid-template-columns: 48px 1fr 28px;
+    opacity: .72;
+}
 
-            align-items: center;
+.footer-title {
+    margin-top: 7px;
 
-            gap: 16px;
+    font-family: "Cormorant Garamond", serif;
 
-            padding: 20px 7px;
+    font-size: 26px;
+}
 
-            color: inherit;
+.footer-text {
+    margin-top: 4px;
 
-            text-decoration: none;
+    font-size: 10px;
 
-            border-bottom: 1px solid rgba(169,104,124,.12);
+    line-height: 1.6;
 
-            transition:
-                padding .3s ease,
-                background .3s ease;
-        }
+    opacity: .82;
+}
 
 
-        .category:first-child {
-            border-top: 1px solid rgba(169,104,124,.12);
-        }
+/* =====================================================
+   ANIMATION
+===================================================== */
 
+@keyframes heroAppear {
 
-        .category:hover {
-            padding-left: 14px;
-            padding-right: 0;
-        }
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
 
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-        .category-number {
-            color: #c97a97;
+}
 
-            font-family: "Cormorant Garamond", serif;
 
-            font-size: 17px;
+/* =====================================================
+   TABLET
+===================================================== */
 
-            font-weight: 500;
-        }
+@media(max-width: 900px) {
 
+    .top-nav {
+        width: calc(100% - 30px);
+    }
 
-        .category-content {
-            min-width: 0;
-        }
+    .nav-links {
+        display: none;
+    }
 
+    .hero {
+        padding-left: 55px;
+    }
 
-        .category-name {
-            color: #4b3039;
+    .hero-content {
+        margin-left: 0;
+    }
 
-            font-family: "Cormorant Garamond", serif;
+}
 
-            font-size: 23px;
 
-            font-weight: 500;
+/* =====================================================
+   MOBILE
+===================================================== */
 
-            line-height: 1.1;
-        }
+@media(max-width: 600px) {
 
+    .top-nav {
+        top: 14px;
 
-        .category-description {
-            margin-top: 4px;
+        width: calc(100% - 24px);
 
-            color: #977982;
+        height: 58px;
 
-            font-size: 10px;
+        padding-left: 14px;
+        padding-right: 10px;
 
-            font-weight: 300;
+        border-radius: 19px;
+    }
 
-            line-height: 1.5;
-        }
+    .logo-name {
+        font-size: 20px;
+    }
 
+    .nav-button {
+        height: 36px;
 
-        .category-arrow {
-            width: 28px;
-            height: 28px;
+        padding: 0 13px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        font-size: 10px;
+    }
 
-            border-radius: 50%;
+    .hero {
+        min-height: 100svh;
 
-            color: #b45377;
+        padding:
+            130px 25px
+            55px;
 
-            background: rgba(255,255,255,.65);
+        align-items: center;
+    }
 
-            font-size: 12px;
+    .hero-content {
+        width: 100%;
+    }
 
-            transition:
-                transform .3s ease,
-                background .3s ease;
-        }
+    .eyebrow {
+        font-size: 8px;
 
+        letter-spacing: 2.4px;
 
-        .category:hover .category-arrow {
-            transform: translateX(4px);
+        margin-bottom: 23px;
+    }
 
-            background: #f2cad8;
-        }
+    .title {
+        font-size: 66px;
 
+        letter-spacing: -3px;
+    }
 
-        /* =====================================================
-           PANEL FOOTER
-        ===================================================== */
+    .title-script {
+        margin-top: 15px;
+    }
 
-        .panel-footer {
-            margin-top: 28px;
+    .description {
+        width: 100%;
 
-            padding: 22px;
+        margin-top: 31px;
 
-            border-radius: 21px;
+        font-size: 13px;
+    }
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #d881a1,
-                    #c35b83
-                );
+    .buttons {
+        flex-wrap: wrap;
 
-            color: white;
+        margin-top: 25px;
+    }
 
-            box-shadow:
-                0 15px 35px rgba(184, 79, 120, .18);
-        }
+    .primary,
+    .secondary {
+        height: 44px;
 
+        padding: 0 17px;
+    }
 
-        .panel-footer-label {
-            font-size: 8px;
+    .menu-trigger {
+        width: 48px;
+        height: 120px;
+    }
 
-            letter-spacing: 2.5px;
+    .sidebar {
+        top: 7px;
+        right: 7px;
+        bottom: 7px;
 
-            text-transform: uppercase;
+        width: calc(100% - 14px);
 
-            opacity: .72;
-        }
+        padding: 27px 23px;
 
+        border-radius: 25px;
+    }
 
-        .panel-footer-title {
-            margin-top: 7px;
+    .sidebar-title {
+        font-size: 31px;
+    }
 
-            font-family: "Cormorant Garamond", serif;
+    .category {
+        grid-template-columns:
+            35px
+            1fr
+            28px;
 
-            font-size: 25px;
+        gap: 11px;
 
-            font-weight: 500;
-        }
+        padding: 18px 3px;
+    }
 
+    .category-name {
+        font-size: 21px;
+    }
 
-        .panel-footer-text {
-            margin-top: 4px;
+}
 
-            font-size: 10px;
 
-            line-height: 1.6;
+/* =====================================================
+   ACCESSIBILITY
+===================================================== */
 
-            opacity: .82;
-        }
+@media(prefers-reduced-motion: reduce) {
 
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
 
-        /* =====================================================
-           SUBTLE DECORATION
-        ===================================================== */
+}
 
-        .corner-detail {
-            position: fixed;
-
-            right: 70px;
-            bottom: 42px;
-
-            width: 110px;
-            height: 110px;
-
-            border: 1px solid rgba(205, 121, 148, .12);
-
-            border-radius: 50%;
-
-            pointer-events: none;
-        }
-
-
-        .corner-detail::before {
-            content: "";
-
-            position: absolute;
-
-            inset: 14px;
-
-            border: 1px solid rgba(205, 121, 148, .08);
-
-            border-radius: 50%;
-        }
-
-
-        /* =====================================================
-           ANIMATION
-        ===================================================== */
-
-        @keyframes heroEnter {
-
-            from {
-                opacity: 0;
-
-                transform: translateY(22px);
-            }
-
-            to {
-                opacity: 1;
-
-                transform: translateY(0);
-            }
-
-        }
-
-
-        /* =====================================================
-           TABLET
-        ===================================================== */
-
-        @media (max-width: 900px) {
-
-            .top-nav {
-                width: calc(100% - 30px);
-            }
-
-
-            .navigation {
-                display: none;
-            }
-
-
-            .hero {
-                padding:
-                    160px 55px
-                    70px;
-            }
-
-
-            .hero-content {
-                width: 100%;
-            }
-
-
-            .hero-title {
-                font-size: clamp(70px, 11vw, 105px);
-            }
-
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 600px) {
-
-            .top-nav {
-                top: 14px;
-
-                height: 58px;
-
-                width: calc(100% - 24px);
-
-                border-radius: 19px;
-
-                padding-left: 14px;
-                padding-right: 10px;
-            }
-
-
-            .brand-name {
-                font-size: 20px;
-            }
-
-
-            .brand-mark {
-                width: 29px;
-                height: 29px;
-            }
-
-
-            .start-button {
-                height: 36px;
-
-                padding: 0 13px;
-
-                font-size: 10px;
-            }
-
-
-            .hero {
-                min-height: 100svh;
-
-                padding:
-                    135px 25px
-                    55px;
-
-                align-items: center;
-            }
-
-
-            .hero-content {
-                padding: 0;
-            }
-
-
-            .eyebrow {
-                margin-bottom: 23px;
-
-                font-size: 8px;
-
-                letter-spacing: 2.5px;
-            }
-
-
-            .hero-title {
-                font-size: 67px;
-
-                line-height: .82;
-
-                letter-spacing: -3px;
-            }
-
-
-            .hero-title .wedding {
-                margin-top: 14px;
-            }
-
-
-            .hero-description {
-                width: 100%;
-
-                max-width: 390px;
-
-                margin-top: 31px;
-
-                font-size: 13px;
-
-                line-height: 1.75;
-            }
-
-
-            .hero-buttons {
-                margin-top: 25px;
-
-                flex-wrap: wrap;
-            }
-
-
-            .hero-primary,
-            .hero-secondary {
-                height: 44px;
-
-                padding: 0 17px;
-            }
-
-
-            .menu-tab {
-                width: 48px;
-
-                height: 120px;
-
-                font-size: 8px;
-            }
-
-
-            .side-panel {
-                top: 7px;
-                right: 7px;
-                bottom: 7px;
-
-                width: calc(100% - 14px);
-
-                padding: 28px 23px;
-
-                border-radius: 25px;
-            }
-
-
-            .panel-title {
-                font-size: 31px;
-            }
-
-
-            .category {
-                grid-template-columns: 38px 1fr 27px;
-
-                gap: 12px;
-
-                padding: 17px 3px;
-            }
-
-
-            .category-name {
-                font-size: 21px;
-            }
-
-
-            .category-description {
-                font-size: 9px;
-            }
-
-
-            .corner-detail {
-                display: none;
-            }
-
-        }
-
-
-        /* =====================================================
-           REDUCED MOTION
-        ===================================================== */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-
-        }
-
-    </style>
+</style>
 </head>
 
 
 <body>
 
 
-    <!-- ==============================
-         AMBIENT LIGHT
-    =============================== -->
+<!-- BACKGROUND -->
 
-    <div class="ambient-light ambient-one"></div>
-    <div class="ambient-light ambient-two"></div>
+<div class="light light-one"></div>
+<div class="light light-two"></div>
 
 
-    <!-- ==============================
-         NAVIGATION
-    =============================== -->
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-    <header class="top-nav">
+<header class="top-nav">
 
-        <a href="#" class="brand">
+    <a href="#" class="logo">
 
-            <span class="brand-mark">
-                ♥
-            </span>
-
-            <span class="brand-name">
-                The Wedding Edit
-            </span>
-
-        </a>
-
-
-        <nav class="navigation">
-
-            <a href="#">
-                Home
-            </a>
-
-            <a href="#">
-                Planner
-            </a>
-
-            <a href="#">
-                Inspirație
-            </a>
-
-            <a href="#">
-                Despre
-            </a>
-
-        </nav>
-
-
-        <a href="#" class="start-button">
-            Începe planificarea
-        </a>
-
-    </header>
-
-
-
-    <!-- ==============================
-         MAIN HERO
-    =============================== -->
-
-    <main class="hero">
-
-        <section class="hero-content">
-
-
-            <div class="eyebrow">
-
-                <span class="eyebrow-line"></span>
-
-                Planifică · Organizează · Iubește
-
-                <span class="eyebrow-line"></span>
-
-            </div>
-
-
-            <h1 class="hero-title">
-
-                <span class="perfect">
-                    Your perfect
-                </span>
-
-                <span class="wedding">
-                    Wedding
-                </span>
-
-            </h1>
-
-
-            <p class="hero-description">
-
-                Un spațiu elegant pentru toate detaliile
-                zilei voastre. De la primele idei până la
-                ultimul moment al nunții.
-
-            </p>
-
-
-            <div class="hero-buttons">
-
-                <a href="#" class="hero-primary">
-                    Începe să planifici
-                </a>
-
-
-                <a href="#" class="hero-secondary">
-                    Descoperă planner-ul
-                </a>
-
-            </div>
-
-
-        </section>
-
-    </main>
-
-
-
-    <!-- ==============================
-         RIGHT MENU TAB
-    =============================== -->
-
-    <button
-        class="menu-tab"
-        id="menuTab"
-        aria-label="Deschide meniul"
-        aria-expanded="false"
-    >
-
-        <span class="menu-tab-inner">
-
-            <span>
-                MENU
-            </span>
-
-            <span class="menu-arrow">
-                ←
-            </span>
-
+        <span class="logo-icon">
+            ♥
         </span>
 
-    </button>
+        <span class="logo-name">
+            The Wedding Edit
+        </span>
+
+    </a>
+
+
+    <nav class="nav-links">
+
+        <a href="#">
+            Home
+        </a>
+
+        <a href="#">
+            Planner
+        </a>
+
+        <a href="#">
+            Inspirație
+        </a>
+
+        <a href="#">
+            Despre
+        </a>
+
+    </nav>
+
+
+    <a href="#" class="nav-button">
+        Începe planificarea
+    </a>
+
+</header>
 
 
 
-    <!-- ==============================
-         OVERLAY
-    =============================== -->
+<!-- =====================================================
+     HOME
+===================================================== -->
 
-    <div
-        class="overlay"
-        id="overlay"
-        aria-hidden="true"
-    ></div>
+<main class="hero">
+
+    <section class="hero-content">
 
 
+        <div class="eyebrow">
 
-    <!-- ==============================
-         SIDE PANEL
-    =============================== -->
+            <span class="eyebrow-line"></span>
 
-    <aside
-        class="side-panel"
-        id="sidePanel"
-        aria-hidden="true"
-    >
+            PLANIFICĂ · ORGANIZEAZĂ · IUBEȘTE
 
-
-        <div class="panel-header">
-
-
-            <div>
-
-                <div class="panel-small">
-                    The Wedding Edit
-                </div>
-
-                <h2 class="panel-title">
-                    Planifică fiecare detaliu
-                </h2>
-
-            </div>
-
-
-            <button
-                class="close-menu"
-                id="closeMenu"
-                aria-label="Închide meniul"
-            >
-                ×
-            </button>
-
+            <span class="eyebrow-line"></span>
 
         </div>
 
 
+        <h1 class="title">
 
-        <div class="categories">
+            <span class="title-top">
+                Your perfect
+            </span>
+
+            <span class="title-script">
+                Wedding
+            </span>
+
+        </h1>
 
 
-            <!-- 01 -->
+        <p class="description">
 
-            <a href="#" class="category">
+            Un spațiu elegant pentru toate detaliile
+            zilei voastre. De la primele idei până la
+            ultimul moment al nunții.
 
-                <span class="category-number">
-                    01
-                </span>
+        </p>
 
-                <span class="category-content">
 
-                    <span class="category-name">
-                        Checklist
-                    </span>
+        <div class="buttons">
 
-                    <span class="category-description">
-                        Organizează fiecare pas al nunții
-                    </span>
-
-                </span>
-
-                <span class="category-arrow">
-                    →
-                </span>
-
+            <a href="#" class="primary">
+                Începe să planifici
             </a>
 
-
-
-            <!-- 02 -->
-
-            <a href="#" class="category">
-
-                <span class="category-number">
-                    02
-                </span>
-
-                <span class="category-content">
-
-                    <span class="category-name">
-                        Buget
-                    </span>
-
-                    <span class="category-description">
-                        Planifică și urmărește fiecare cheltuială
-                    </span>
-
-                </span>
-
-                <span class="category-arrow">
-                    →
-                </span>
-
+            <a href="#" class="secondary">
+                Descoperă planner-ul
             </a>
-
-
-
-            <!-- 03 -->
-
-            <a href="#" class="category">
-
-                <span class="category-number">
-                    03
-                </span>
-
-                <span class="category-content">
-
-                    <span class="category-name">
-                        Invitați
-                    </span>
-
-                    <span class="category-description">
-                        Lista invitaților și confirmările
-                    </span>
-
-                </span>
-
-                <span class="category-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-
-            <!-- 04 -->
-
-            <a href="#" class="category">
-
-                <span class="category-number">
-                    04
-                </span>
-
-                <span class="category-content">
-
-                    <span class="category-name">
-                        Furnizori
-                    </span>
-
-                    <span class="category-description">
-                        Foto, video, muzică, flori și decor
-                    </span>
-
-                </span>
-
-                <span class="category-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-
-            <!-- 05 -->
-
-            <a href="#" class="category">
-
-                <span class="category-number">
-                    05
-                </span>
-
-                <span class="category-content">
-
-                    <span class="category-name">
-                        Locație & Mese
-                    </span>
-
-                    <span class="category-description">
-                        Așezarea meselor și organizarea sălii
-                    </span>
-
-                </span>
-
-                <span class="category-arrow">
-                    →
-                </span>
-
-            </a>
-
-
-
-            <!-- 06 -->
-
-            <a href="#" class="category">
-
-                <span class="category-number">
-                    06
-                </span>
-
-                <span class="category-content">
-
-                    <span class="category-name">
-                        Timeline
-                    </span>
-
-                    <span class="category-description">
-                        Programul și momentele zilei
-                    </span>
-
-                </span>
-
-                <span class="category-arrow">
-                    →
-                </span>
-
-            </a>
-
 
         </div>
 
 
+    </section>
 
-        <!-- PANEL FOOTER -->
+</main>
 
-        <div class="panel-footer">
 
-            <div class="panel-footer-label">
-                Your wedding
+
+<!-- =====================================================
+     MENU TAB
+===================================================== -->
+
+<button
+    class="menu-trigger"
+    id="menuTrigger"
+    aria-label="Deschide meniul"
+    aria-expanded="false"
+>
+
+    <span class="menu-trigger-content">
+
+        <span class="menu-text">
+            MENU
+        </span>
+
+        <span class="menu-arrow">
+            ←
+        </span>
+
+    </span>
+
+</button>
+
+
+
+<!-- =====================================================
+     OVERLAY
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+></div>
+
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+    aria-hidden="true"
+>
+
+
+    <!-- HEADER -->
+
+    <div class="sidebar-header">
+
+        <div>
+
+            <div class="sidebar-label">
+                The Wedding Edit
             </div>
 
-            <div class="panel-footer-title">
-                Let the planning begin.
-            </div>
-
-            <div class="panel-footer-text">
-                Totul într-un singur loc, organizat
-                simplu și elegant.
-            </div>
+            <h2 class="sidebar-title">
+                Planifică fiecare detaliu
+            </h2>
 
         </div>
 
 
-    </aside>
+        <button
+            class="close"
+            id="closeButton"
+            aria-label="Închide meniul"
+        >
+            ×
+        </button>
+
+    </div>
 
 
 
-    <!-- ==============================
-         DECORATION
-    =============================== -->
+    <!-- CATEGORIES -->
 
-    <div class="corner-detail"></div>
+    <div class="category-list">
 
 
+        <a href="#" class="category">
 
-    <!-- ==============================
-         JAVASCRIPT
-    =============================== -->
+            <span class="category-number">
+                01
+            </span>
 
-    <script>
+            <span>
 
-        const body = document.body;
+                <span class="category-name">
+                    Checklist
+                </span>
 
-        const menuTab = document.getElementById("menuTab");
+                <span class="category-description">
+                    Organizează fiecare pas al nunții
+                </span>
 
-        const closeMenu =
-            document.getElementById("closeMenu");
+            </span>
 
-        const overlay =
-            document.getElementById("overlay");
+            <span class="category-arrow">
+                →
+            </span>
 
-        const sidePanel =
-            document.getElementById("sidePanel");
+        </a>
 
 
-        /* ==========================
-           OPEN MENU
-        ========================== */
+        <a href="#" class="category">
 
-        function openMenu() {
+            <span class="category-number">
+                02
+            </span>
 
-            body.classList.add("menu-open");
+            <span>
 
-            menuTab.setAttribute(
-                "aria-expanded",
-                "true"
-            );
+                <span class="category-name">
+                    Buget
+                </span>
 
-            sidePanel.setAttribute(
-                "aria-hidden",
-                "false"
-            );
+                <span class="category-description">
+                    Planifică și urmărește cheltuielile
+                </span>
 
-            overlay.setAttribute(
-                "aria-hidden",
-                "false"
-            );
+            </span>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category">
+
+            <span class="category-number">
+                03
+            </span>
+
+            <span>
+
+                <span class="category-name">
+                    Invitați
+                </span>
+
+                <span class="category-description">
+                    Lista invitaților și confirmările
+                </span>
+
+            </span>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category">
+
+            <span class="category-number">
+                04
+            </span>
+
+            <span>
+
+                <span class="category-name">
+                    Furnizori
+                </span>
+
+                <span class="category-description">
+                    Foto, video, muzică, flori și decor
+                </span>
+
+            </span>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category">
+
+            <span class="category-number">
+                05
+            </span>
+
+            <span>
+
+                <span class="category-name">
+                    Locație & Mese
+                </span>
+
+                <span class="category-description">
+                    Așezarea meselor și organizarea sălii
+                </span>
+
+            </span>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+        <a href="#" class="category">
+
+            <span class="category-number">
+                06
+            </span>
+
+            <span>
+
+                <span class="category-name">
+                    Timeline
+                </span>
+
+                <span class="category-description">
+                    Programul și momentele zilei
+                </span>
+
+            </span>
+
+            <span class="category-arrow">
+                →
+            </span>
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+
+    <div class="sidebar-footer">
+
+        <div class="footer-label">
+            Your wedding
+        </div>
+
+        <div class="footer-title">
+            Let the planning begin.
+        </div>
+
+        <div class="footer-text">
+            Totul într-un singur loc,
+            organizat simplu și elegant.
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+const body = document.body;
+
+const menuTrigger =
+    document.getElementById("menuTrigger");
+
+const closeButton =
+    document.getElementById("closeButton");
+
+const overlay =
+    document.getElementById("overlay");
+
+const sidebar =
+    document.getElementById("sidebar");
+
+
+/* ==========================
+   OPEN
+========================== */
+
+function openMenu() {
+
+    body.classList.add("menu-open");
+
+    menuTrigger.setAttribute(
+        "aria-expanded",
+        "true"
+    );
+
+    sidebar.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+}
+
+
+/* ==========================
+   CLOSE
+========================== */
+
+function closeMenu() {
+
+    body.classList.remove("menu-open");
+
+    menuTrigger.setAttribute(
+        "aria-expanded",
+        "false"
+    );
+
+    sidebar.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+}
+
+
+/* ==========================
+   EVENTS
+========================== */
+
+menuTrigger.addEventListener(
+    "click",
+    openMenu
+);
+
+closeButton.addEventListener(
+    "click",
+    closeMenu
+);
+
+overlay.addEventListener(
+    "click",
+    closeMenu
+);
+
+
+/* ==========================
+   ESC
+========================== */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Escape" &&
+            body.classList.contains("menu-open")
+        ) {
+
+            closeMenu();
 
         }
 
-
-        /* ==========================
-           CLOSE MENU
-        ========================== */
-
-        function closeSideMenu() {
-
-            body.classList.remove("menu-open");
-
-            menuTab.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-
-            sidePanel.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-            overlay.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-        }
+    }
+);
 
 
-        /* ==========================
-           BUTTON EVENTS
-        ========================== */
+/* ==========================
+   TEMPORARY CATEGORY LINKS
+========================== */
 
-        menuTab.addEventListener(
+document
+    .querySelectorAll(".category")
+    .forEach(function(category) {
+
+        category.addEventListener(
             "click",
-            openMenu
-        );
-
-
-        closeMenu.addEventListener(
-            "click",
-            closeSideMenu
-        );
-
-
-        overlay.addEventListener(
-            "click",
-            closeSideMenu
-        );
-
-
-        /* ==========================
-           ESC KEY
-        ========================== */
-
-        document.addEventListener(
-            "keydown",
             function(event) {
 
-                if (
-                    event.key === "Escape" &&
-                    body.classList.contains("menu-open")
-                ) {
-
-                    closeSideMenu();
-
-                }
+                event.preventDefault();
 
             }
         );
 
+    });
 
-        /* ==========================
-           CLOSE WHEN CATEGORY CLICKED
-           (TEMPORARILY DISABLED LINKS)
-        ========================== */
-
-        document
-            .querySelectorAll(".category")
-            .forEach(function(category) {
-
-                category.addEventListener(
-                    "click",
-                    function(event) {
-
-                        /*
-                           Momentan nu avem paginile
-                           create pentru categorii.
-
-                           Le vom lega mai târziu
-                           de paginile reale.
-                        */
-
-                        event.preventDefault();
-
-                    }
-                );
-
-            });
-
-
-    </script>
+</script>
 
 
 </body>
