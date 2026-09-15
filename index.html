@@ -2237,7 +2237,13 @@
 
                     letter.style.animationDelay =
                         `${index * 0.045}s`;
-
+                    
+letter.addEventListener("animationend", function() {
+    letter.style.opacity = "1";
+    letter.style.transform = "translateY(0) rotate(0deg)";
+    letter.style.filter = "blur(0)";
+    letter.style.animation = "none";
+});
 
                     element.appendChild(
                         letter
