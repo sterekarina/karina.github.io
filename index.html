@@ -344,12 +344,12 @@
             position: relative;
 
             z-index: 2;
+            isolation: isolate;
+            overflow: hidden;
 
             width: 100%;
 
             min-height: 100vh;
-            
-            background: url("wedding-background.png") center center / cover no-repeat;
 
             display: flex;
 
@@ -363,7 +363,40 @@
         }
 
 
+        /* DREAMY FLORAL HERO BACKGROUND */
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -2%;
+            z-index: 0;
+            background: url("wedding-background.png") center center / cover no-repeat;
+            opacity: 0.97;
+            transform: scale(1.03);
+            animation: floralDrift 24s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: radial-gradient(circle at 50% 45%, rgba(255,255,255,0.10), transparent 44%);
+            pointer-events: none;
+        }
+
+        @keyframes floralDrift {
+            0% {
+                transform: scale(1.03) translate3d(0, 0, 0);
+            }
+            100% {
+                transform: scale(1.07) translate3d(-0.7%, 0.4%, 0);
+            }
+        }
+
         .hero-content {
+            position: relative;
+            z-index: 2;
             width:
                 min(
                     1000px,
@@ -525,74 +558,81 @@
                     0 8px 16px
                     rgba(170,72,110,0.08)
                 );
-            .title-second .hand-letter {
-    background:
-        linear-gradient(
-            105deg,
-            #124d3e 0%,
-            #165d4c 46%,
-            #2c8b70 100%
-        );
+        }
 
-    -webkit-background-clip: text;
-    background-clip: text;
 
-    color: transparent;
-}
+        /* FIX PENTRU WEDDING */
+        .title-second .hand-letter {
+            background: linear-gradient(
+                105deg,
+                #124d3e 0%,
+                #165d4c 46%,
+                #2c8b70 100%
+            );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
 
 
         /* =====================================
            HANDWRITING LETTERS
         ===================================== */
 
-.hand-letter {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(10px) rotate(2deg);
-    filter: blur(2px);
+        .hand-letter {
+            display: inline-block;
 
-    animation:
-        handwriting
-        0.7s
-        cubic-bezier(.22,1,.36,1)
-        forwards;
+            opacity: 0;
 
-    animation-fill-mode: forwards;
-}
+            transform:
+                translateY(10px)
+                rotate(2deg);
 
-/* FIX PENTRU WEDDING */
-.title-second .hand-letter {
-    background: linear-gradient(
-        105deg,
-        #124d3e 0%,
-        #165d4c 46%,
-        #2c8b70 100%
-    );
+            filter:
+                blur(2px);
 
-    -webkit-background-clip: text;
-    background-clip: text;
+            animation:
+                handwriting
+                0.7s
+                cubic-bezier(.22,1,.36,1)
+                forwards;
 
-    color: transparent;
-}
+            animation-fill-mode: forwards;
+        }
 
 
-   @keyframes handwriting {
-    0% {
-        opacity: 0;
-        transform: translateY(10px) rotate(3deg);
-        filter: blur(3px);
-    }
+        @keyframes handwriting {
 
-    50% {
-        opacity: 0.75;
-    }
+            0% {
+                opacity: 0;
 
-    100% {
-        opacity: 1;
-        transform: translateY(0) rotate(0deg);
-        filter: blur(0);
-    }
-}
+                transform:
+                    translateY(10px)
+                    rotate(3deg);
+
+                filter:
+                    blur(2px);
+            }
+
+            45% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+
+                filter:
+                    blur(0);
+            }
+
+        }
+
 
         /* =====================================
            DESCRIPTION
@@ -1543,6 +1583,10 @@
 
         @media (prefers-reduced-motion: reduce) {
 
+            .hero::before {
+                animation: none !important;
+            }
+
             *,
             *::before,
             *::after {
@@ -2266,12 +2310,13 @@
                     letter.style.animationDelay =
                         `${index * 0.045}s`;
                     
-letter.addEventListener("animationend", function() {
-    letter.style.opacity = "1";
-    letter.style.transform = "translateY(0) rotate(0deg)";
-    letter.style.filter = "blur(0)";
-    letter.style.animation = "none";
-});
+                    letter.addEventListener("animationend", function() {
+                        letter.style.opacity = "1";
+                        letter.style.transform = "translateY(0) rotate(0deg)";
+                        letter.style.filter = "blur(0)";
+                        letter.style.animation = "none";
+                    });
+
 
                     element.appendChild(
                         letter
