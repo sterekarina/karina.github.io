@@ -2246,86 +2246,84 @@
            HANDWRITING ANIMATION
         ================================= */
 
-        function createHandwritingText(
-            element
+function createHandwritingText(element) {
+
+    if (!element) {
+        return;
+    }
+
+    /*
+     * WEDDING nu va mai fi împărțit în litere.
+     * Îl păstrăm ca un singur cuvânt, astfel încât
+     * gradientul original să rămână intact.
+     */
+    if (element.classList.contains("title-second")) {
+
+        element.style.animation =
+            "heroAppear 1s cubic-bezier(.22,1,.36,1) both";
+
+        return;
+    }
+
+
+    const text =
+        element.textContent.trim();
+
+
+    element.textContent = "";
+
+
+    /*
+     * Your perfect rămâne animat literă cu literă.
+     */
+
+    [...text].forEach(
+        function(
+            character,
+            index
         ) {
 
-            if (!element) {
-                return;
-            }
+            const letter =
+                document.createElement(
+                    "span"
+                );
 
 
-            const text =
-                element.textContent.trim();
-
-
-            element.textContent = "";
+            letter.className =
+                "hand-letter";
 
 
             /*
-             * Transformăm fiecare caracter
-             * într-un element separat.
+             * Păstrăm spațiile.
              */
 
-            [...text].forEach(
-                function(
-                    character,
-                    index
-                ) {
+            if (
+                character === " "
+            ) {
 
-                    const letter =
-                        document.createElement(
-                            "span"
-                        );
+                letter.innerHTML =
+                    "&nbsp;";
 
+            } else {
 
-                    letter.className =
-                        "hand-letter";
+                letter.textContent =
+                    character;
 
-
-                    /*
-                     * Păstrăm spațiile.
-                     */
-
-                    if (
-                        character === " "
-                    ) {
-
-                        letter.innerHTML =
-                            "&nbsp;";
-
-                    } else {
-
-                        letter.textContent =
-                            character;
-
-                    }
+            }
 
 
-                    /*
-                     * Fiecare literă pornește
-                     * puțin după precedenta.
-                     */
-
-                    letter.style.animationDelay =
-                        `${index * 0.045}s`;
-                    
-                    letter.addEventListener("animationend", function() {
-                        letter.style.opacity = "1";
-                        letter.style.transform = "translateY(0) rotate(0deg)";
-                        letter.style.filter = "blur(0)";
-                        letter.style.animation = "none";
-                    });
+            letter.style.animationDelay =
+                `${index * 0.045}s`;
 
 
-                    element.appendChild(
-                        letter
-                    );
-
-                }
+            element.appendChild(
+                letter
             );
 
         }
+    );
+
+}
 
 
         /* =================================
