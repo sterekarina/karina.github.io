@@ -1692,21 +1692,71 @@
         .guest-stat::after{content:"";position:absolute;inset:-50% -30%;background:linear-gradient(105deg,transparent 44%,rgba(255,255,255,.12) 50%,transparent 56%);animation:satinStat 8s ease-in-out infinite}
         @keyframes satinStat{0%,60%{transform:translateX(-50%)}100%{transform:translateX(55%)}}
         .guest-stat .number{font:750 46px/1 -apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',sans-serif;color:#fff;letter-spacing:-2px}
-        .guest-stat .label{margin-top:8px;font:500 13px 'DM Sans';color:#e8efe9}.guest-stat.confirmed .label{color:#83d8b4}.guest-stat.waiting .label{color:#e6c782}.guest-stat.declined .label{color:#dfb7b0}
-        .planner-toolbar{display:grid;grid-template-columns:1fr 220px;gap:12px;margin:22px 0 14px}
-        .planner-input,.planner-select{height:48px;border:1px solid rgba(10,69,56,.15);border-radius:15px;background:rgba(255,255,255,.62);color:#31564d;outline:none;padding:0 15px;font:400 14px 'DM Sans'}
+        .guest-stat .label{margin-top:8px;font:500 13px 'DM Sans';color:#e8efe9}.guest-stat.confirmed .label{color:#83d8b4}.guest-stat.waiting .label{color:#e6c782}.guest-stat.declined .label{color:#dfb7b0}.guest-stat.special-stat{display:none}.guest-stat.special-stat.visible{display:flex}
+        .planner-toolbar{display:grid;grid-template-columns:minmax(280px,1.7fr) repeat(4,minmax(145px,1fr)) auto;gap:10px;margin:22px 0 14px;align-items:center}
+        .planner-input,.planner-select{height:48px;border:1px solid rgba(10,69,56,.15);border-radius:15px;background:rgba(255,255,255,.62);color:#31564d;outline:none;padding:0 15px;font:400 14px 'DM Sans';box-sizing:border-box}
         .planner-select option{background:#fff;color:#183d34}
+        .reset-filters{height:42px;border:1px solid rgba(12,73,59,.14);border-radius:999px;background:#eef5f1;color:#315b50;padding:0 16px;font:600 11px 'DM Sans';cursor:pointer;white-space:nowrap;transition:background .18s ease,transform .18s ease}.reset-filters:hover{background:#dcebe3;transform:translateY(-1px)}
         .planner-table-wrap{border:1px solid rgba(10,69,56,.13);border-radius:20px;overflow:auto;background:rgba(255,255,255,.44)}
-        .planner-table{width:100%;min-width:850px;border-collapse:collapse}.planner-table th,.planner-table td{padding:15px 16px;border-bottom:1px solid rgba(12,73,59,.10);text-align:left}.planner-table th{font:700 10px 'DM Sans';letter-spacing:.22em;text-transform:uppercase;color:#8c7546}.planner-table td{font:400 14px 'DM Sans';color:#294e44}.planner-table tr:last-child td{border-bottom:none}
+        .planner-table{width:100%;min-width:1200px;border-collapse:collapse}.planner-table th,.planner-table td{padding:15px 16px;border-bottom:1px solid rgba(12,73,59,.10);text-align:left;vertical-align:top}.planner-table th{font:700 10px 'DM Sans';letter-spacing:.22em;text-transform:uppercase;color:#8c7546}.planner-table td{font:400 14px 'DM Sans';color:#294e44}.planner-table tr:last-child td{border-bottom:none}
         .guest-name-cell{display:flex;align-items:center;gap:12px;font-weight:600}.guest-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#d9e7e0,#a8c8bb);color:#17483b;font:600 17px 'DM Sans';border:1px solid rgba(255,255,255,.8)}
-        .status-select-luxury{min-width:165px;height:38px;border:1px solid rgba(12,73,59,.15);border-radius:999px;padding:0 13px;background:#eef4f0;color:#285448;font:500 13px 'DM Sans';outline:none}
+        .guest-note-dot{position:relative;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#e58cae;color:#fff;font:700 9px 'DM Sans';letter-spacing:.02em;cursor:help;flex:none}.guest-note-dot::after{content:attr(data-note);position:absolute;left:50%;bottom:calc(100% + 9px);width:210px;padding:10px 12px;border-radius:10px;background:#173f35;color:#fff;font:400 12px/1.4 'DM Sans';box-shadow:0 10px 25px rgba(7,44,35,.22);opacity:0;visibility:hidden;transform:translate(-12% ,4px);transition:opacity .18s ease,transform .18s ease;z-index:20;pointer-events:none}.guest-note-dot:hover::after,.guest-note-dot:focus::after{opacity:1;visibility:visible;transform:translate(-12%,0)}
+        .guest-tag-badge{display:inline-flex;align-items:center;border-radius:999px;background:#edf4ee;border:1px solid rgba(12,73,59,.10);padding:7px 11px;color:#2a5d50;font:600 12px 'DM Sans'}
+        .guest-notes-cell{max-width:240px;color:#4a6761;line-height:1.45}.guest-notes-cell.empty{color:#7a8d86}
+        .status-select-luxury{min-width:165px;height:38px;border:1px solid rgba(12,73,59,.15);border-radius:999px;padding:0 13px;background:#eef4f0;color:#285448;font:500 13px 'DM Sans';outline:none}.need-status-select{min-width:180px}.need-note-cell{max-width:220px;color:#4a6761;line-height:1.45}.need-note-cell.empty{color:#7a8d86}
         .row-actions{display:flex;gap:7px}.row-action{width:35px;height:35px;border-radius:10px;border:1px solid rgba(12,73,59,.12);background:rgba(255,255,255,.65);color:#2d5b4e;cursor:pointer}.row-action:hover{background:#e4eee9}
         .empty-planner{text-align:center;padding:52px 20px;color:#70867e}.empty-planner strong{display:block;color:#315c50;font:500 25px 'Cormorant Garamond';margin-bottom:6px}
         .planner-add{border:0;position:relative;overflow:hidden;border-radius:999px;padding:15px 23px;background:linear-gradient(120deg,#0b5a48,#06372e 55%,#0e705a);color:#fff;box-shadow:0 14px 30px rgba(5,59,48,.20),inset 0 1px rgba(255,255,255,.18);font:600 14px 'DM Sans';cursor:pointer}
         .next-panel{display:grid;place-items:center;min-height:420px;text-align:center}.next-panel h2{font:500 52px 'Cormorant Garamond';color:#174337;margin-bottom:8px}.next-panel p{max-width:500px;color:#71867f;line-height:1.7;font:400 14px 'DM Sans'}
-        .lux-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(2,35,29,.45);backdrop-filter:blur(8px);z-index:999}.lux-modal.open{display:flex}.lux-box{width:min(650px,100%);border-radius:26px;background:#f7f4ed;border:1px solid rgba(223,197,140,.35);box-shadow:0 30px 90px rgba(0,0,0,.25);padding:28px;color:#244b40}.lux-box h2{font:500 40px 'Cormorant Garamond';margin:0 0 20px}.lux-form{display:grid;grid-template-columns:1fr 1fr;gap:13px}.lux-field{display:flex;flex-direction:column;gap:6px}.lux-field.full{grid-column:1/-1}.lux-field label{font:600 10px 'DM Sans';letter-spacing:.14em;text-transform:uppercase;color:#8c7546}.lux-field input,.lux-field select,.lux-field textarea{border:1px solid rgba(12,73,59,.14);border-radius:12px;padding:11px 12px;background:#fff;outline:none;color:#244b40;font:400 14px 'DM Sans'}.lux-field textarea{min-height:85px;resize:vertical}.lux-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:17px}.lux-cancel,.lux-save{padding:11px 17px;border-radius:11px;cursor:pointer;font:600 13px 'DM Sans'}.lux-cancel{border:1px solid rgba(12,73,59,.15);background:transparent;color:#345b50}.lux-save{border:1px solid rgba(223,197,140,.5);background:linear-gradient(120deg,#0b5a48,#06382f);color:#fff}
+        .lux-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(2,35,29,.45);backdrop-filter:blur(8px);z-index:999}.lux-modal.open{display:flex}.lux-box{width:min(760px,100%);max-height:calc(100vh - 40px);overflow-y:auto;border-radius:26px;background:#f7f4ed;border:1px solid rgba(223,197,140,.35);box-shadow:0 30px 90px rgba(0,0,0,.25);padding:28px;color:#244b40}.lux-box h2{font:500 40px 'Cormorant Garamond';margin:0 0 20px}.lux-form{display:grid;grid-template-columns:1fr 1fr;gap:13px}.lux-field{display:flex;flex-direction:column;gap:6px}.lux-field.full{grid-column:1/-1}.lux-field label{font:600 10px 'DM Sans';letter-spacing:.14em;text-transform:uppercase;color:#8c7546}.lux-field input,.lux-field select,.lux-field textarea{border:1px solid rgba(12,73,59,.14);border-radius:12px;padding:11px 12px;background:#fff;outline:none;color:#244b40;font:400 14px 'DM Sans';box-sizing:border-box}.lux-field textarea{min-height:85px;resize:vertical}.tag-input-shell{position:relative}.tag-suggestions{position:absolute;left:0;right:0;top:calc(100% + 6px);display:flex;flex-direction:column;gap:4px;max-height:180px;overflow:auto;padding:8px;background:#fff;border:1px solid rgba(12,73,59,.12);border-radius:14px;box-shadow:0 20px 40px rgba(10,47,38,.10);z-index:10}.tag-suggestions.hidden{display:none}.tag-suggestion-option{border:0;background:#f5f9f7;color:#234f46;padding:9px 10px;border-radius:10px;text-align:left;font:500 13px 'DM Sans';cursor:pointer}.tag-suggestion-option:hover{background:#edf5f1}.lux-inline-checks{display:flex;flex-wrap:wrap;gap:12px;margin-top:4px}.lux-checkbox-row{display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:#295247;font:500 13px 'DM Sans';padding:8px 10px;border-radius:12px;background:#f2f6f3;border:1px solid rgba(12,73,59,.09)}.lux-checkbox-row input{accent-color:#0d5d4d}.need-detail-box{display:none;margin-top:5px;padding:10px;background:#eef4f0;border:1px solid rgba(12,73,59,.08);border-radius:16px}.need-detail-box.visible{display:block}.need-detail-box .lux-field{gap:5px}.lux-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:17px}.lux-cancel,.lux-save{padding:11px 17px;border-radius:11px;cursor:pointer;font:600 13px 'DM Sans'}.lux-cancel{border:1px solid rgba(12,73,59,.15);background:transparent;color:#345b50}.lux-save{border:1px solid rgba(223,197,140,.5);background:linear-gradient(120deg,#0b5a48,#06382f);color:#fff}
+        .duplicate-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(2,35,29,.42);backdrop-filter:blur(7px);z-index:1000}.duplicate-modal.open{display:flex}.duplicate-box{width:min(560px,100%);border-radius:24px;background:#f7f4ed;border:1px solid rgba(223,197,140,.35);box-shadow:0 30px 90px rgba(0,0,0,.25);padding:26px;color:#244b40}.duplicate-box h2{margin:0 0 10px;font:500 32px 'Cormorant Garamond';color:#183d34}.duplicate-box p{margin:0;color:#567068;font:400 14px/1.65 'DM Sans'}.duplicate-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}.duplicate-actions button{border-radius:11px;padding:11px 15px;cursor:pointer;font:600 13px 'DM Sans'}.duplicate-edit{border:1px solid rgba(12,73,59,.15);background:transparent;color:#345b50}.duplicate-save{border:1px solid rgba(223,197,140,.5);background:linear-gradient(120deg,#0b5a48,#06382f);color:#fff}
+        @media(max-width:1200px){.planner-toolbar{grid-template-columns:minmax(240px,1.5fr) repeat(2,minmax(150px,1fr));}.planner-toolbar .reset-filters{grid-column:span 1}}
         @media(max-width:900px){.guest-stats{grid-template-columns:1fr 1fr}.planner-toolbar{grid-template-columns:1fr}.planner-top{align-items:stretch;flex-direction:column}.planner-title{text-align:center}.planner-subtitle{text-align:center}.planner-back{align-self:flex-start}}
-        @media(max-width:560px){.planner-section{padding:22px 14px 50px}.planner-card{padding:17px;border-radius:22px}.guest-stats{gap:9px}.guest-stat{min-height:105px}.guest-stat .number{font-size:38px}.lux-form{grid-template-columns:1fr}.lux-field.full{grid-column:auto}}
+        @media(max-width:560px){.planner-section{padding:22px 14px 50px}.planner-card{padding:17px;border-radius:22px}.guest-stats{gap:9px}.guest-stat{min-height:105px}.guest-stat .number{font-size:38px}.lux-form{grid-template-columns:1fr}.lux-field.full{grid-column:auto}.lux-box{padding:21px;max-height:calc(100vh - 24px)}}
+        @media(max-width:560px){.view-switcher{align-items:center;flex-direction:row;gap:8px}.view-switcher-label{font-size:8px}.table-layout-select{min-width:155px;font-size:12px}}
+        .planner-top-actions{display:flex;flex-direction:column;align-items:flex-end;gap:10px}.view-switcher{display:flex;align-items:center;gap:14px;margin-top:9px;padding:0 0 5px;border-bottom:1px solid rgba(12,73,59,.16)}.view-switcher-label{font:600 10px 'DM Sans';letter-spacing:.14em;text-transform:uppercase;color:#8c7546;white-space:nowrap}.table-layout-select{height:32px;min-width:190px;border:0;border-radius:0;background:transparent;color:#315b50;padding:0 24px 0 0;font:500 14px 'DM Sans';outline:none;cursor:pointer}
+        .table-layout-label{font:600 10px 'DM Sans';letter-spacing:.14em;text-transform:uppercase;color:#8c7546}
+        .table-layout-tools{display:flex;align-items:center;gap:10px}
+        .table-layout-card,.table-layout-details{display:none}
+        body.layout-cards .planner-table-wrap{border:0;background:transparent;overflow:visible}
+        body.layout-cards .planner-table{min-width:0;display:block}
+        body.layout-cards .planner-table thead{display:none}
+        body.layout-cards .planner-table tbody{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+        body.layout-cards .planner-table tr{display:block;border:1px solid rgba(12,73,59,.13);border-radius:20px;background:rgba(255,255,255,.8);box-shadow:0 12px 28px rgba(14,57,47,.07);padding:18px}
+        body.layout-cards .planner-table td{display:none;border:0;padding:0}
+        body.layout-cards .planner-table td:first-child{display:block;padding-bottom:13px}
+        body.layout-cards .table-layout-card{display:grid;gap:9px;border-top:1px solid rgba(12,73,59,.1);padding-top:13px}
+        body.layout-cards .table-layout-card .card-line{display:flex;justify-content:space-between;gap:14px;color:#567068;font:400 13px 'DM Sans'}
+        body.layout-cards .table-layout-card .card-line strong{color:#294e44;font-weight:600;text-align:right}
+        body.layout-cards .table-layout-card .card-actions{display:flex;justify-content:flex-end;padding-top:4px}
+
+        body.layout-side-panel .planner-table{min-width:900px}
+        body.layout-side-panel .planner-table th:nth-child(n+3),body.layout-side-panel .planner-table td:nth-child(n+3){display:none}
+        body.layout-side-panel .planner-table tr{cursor:pointer}
+        body.layout-side-panel .planner-table tr:hover{background:rgba(231,241,236,.65)}
+        body.layout-side-panel .table-layout-card{display:none}
+        /* Refined guest planner controls */
+        .view-switcher{margin-top:12px;padding:6px 7px 6px 14px;border:1px solid rgba(12,73,59,.13);border-radius:999px;background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(235,243,238,.82));box-shadow:0 8px 20px rgba(24,70,57,.08);gap:12px}
+        .view-switcher-label{color:#876b35;font-size:9px}
+        .table-layout-select{min-width:178px;height:34px;padding:0 28px 0 14px;border:0;border-radius:999px;background:#0b5948;color:#fff;font-size:13px;font-weight:600;box-shadow:0 5px 12px rgba(7,67,53,.18)}
+        .planner-table-wrap{border:0;border-radius:18px;background:rgba(255,255,255,.52);box-shadow:0 12px 30px rgba(14,57,47,.06)}
+        .planner-table{border-spacing:0 5px;border-collapse:separate}
+        .planner-table thead th{padding:11px 16px;border:0;background:transparent;color:#967b4b}
+        .planner-table tbody tr{transition:transform .18s ease,box-shadow .18s ease}
+        .planner-table tbody tr:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(14,57,47,.07)}
+        .planner-table tbody td{border-top:1px solid rgba(12,73,59,.07);border-bottom:1px solid rgba(12,73,59,.07);background:rgba(255,255,255,.84)}
+        .planner-table tbody td:first-child{border-left:1px solid rgba(12,73,59,.07);border-radius:14px 0 0 14px}
+        .planner-table tbody td:last-child{border-right:1px solid rgba(12,73,59,.07);border-radius:0 14px 14px 0}
+        .status-select-luxury,.need-status-select{height:34px;min-width:150px;border:1px solid rgba(12,73,59,.1);background:#f1f6f3;color:#245447;font-size:12px}
+        .guest-tag-badge{background:#f3ead8;border-color:rgba(167,127,55,.18);color:#80612d}
+        .row-action{width:32px;height:32px;border:0;background:#edf4f0;border-radius:50%}
+        .row-action:hover{background:#dcebe3;transform:translateY(-1px)}
+        .lux-box{border-radius:30px;padding:30px;background:linear-gradient(145deg,#fbfaf5,#f1f6f1)}
+        .lux-field input,.lux-field select,.lux-field textarea{border:0;border-bottom:2px solid rgba(12,73,59,.13);border-radius:10px 10px 5px 5px;background:rgba(255,255,255,.78);box-shadow:0 3px 12px rgba(19,61,49,.04)}
+        .lux-field input:focus,.lux-field select:focus,.lux-field textarea:focus{border-bottom-color:#b28a43;box-shadow:0 5px 16px rgba(92,117,91,.12)}
+        .lux-checkbox-row{border:0;border-radius:999px;background:#e8f1ec;padding:9px 13px}
+        .need-detail-box{border:0;border-left:3px solid #b28a43;border-radius:0 14px 14px 0;background:rgba(232,241,236,.7);padding:10px 12px}
+        .lux-actions{position:sticky;bottom:-1px;padding-top:14px;background:linear-gradient(180deg,rgba(251,250,245,0),#fbfaf5 24%);z-index:2}
 
     </style>
 
@@ -1872,12 +1922,12 @@
                     <h1 class="planner-title">Planifică nunta ta,<em>fără stres.</em></h1>
                     <p class="planner-subtitle">Organizează invitații, așezarea meselor și invitația digitală într-un singur loc.</p>
                 </div>
-                <button class="planner-back" id="plannerBack">← Înapoi</button>
+                <div class="planner-top-actions"><button class="planner-back" id="plannerBack">← Înapoi</button></div>
             </div>
 
             <div class="planner-card planner-panel" data-panel="guests">
                 <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:20px">
-                    <div><div class="planner-kicker">01</div><h2 style="margin:0;font:500 42px 'Cormorant Garamond';color:#183d34">Invitați</h2></div>
+                    <div><div class="planner-kicker">01</div><h2 style="margin:0;font:500 42px 'Cormorant Garamond';color:#183d34">Invitați</h2><div class="view-switcher"><span class="view-switcher-label">Afișare listă</span><select class="table-layout-select" id="tableLayoutPreview"><option value="classic">Tabel organizat</option><option value="cards">Rânduri tip card</option><option value="side-panel">Detalii la apăsare</option></select></div></div>
                     <button class="planner-add add-guest-luxury" id="plannerAddGuest">+ Adaugă invitat</button>
                 </div>
                 <div class="guest-stats">
@@ -1885,10 +1935,21 @@
                     <div class="guest-stat confirmed"><div class="number" id="pConfirmed">0</div><div class="label">Confirmați</div></div>
                     <div class="guest-stat waiting"><div class="number" id="pWaiting">0</div><div class="label">În așteptare</div></div>
                     <div class="guest-stat declined"><div class="number" id="pDeclined">0</div><div class="label">Nu pot veni</div></div>
+                    <div class="guest-stat special-stat" id="pTransportNeedStat"><div class="number" id="pTransportNeed">0</div><div class="label">Au nevoie de transport</div></div>
+                    <div class="guest-stat special-stat" id="pTransportCoveredStat"><div class="number" id="pTransportCovered">0</div><div class="label">Transport confirmat</div></div>
+                    <div class="guest-stat special-stat" id="pAccommodationNeedStat"><div class="number" id="pAccommodationNeed">0</div><div class="label">Au nevoie de cazare</div></div>
+                    <div class="guest-stat special-stat" id="pAccommodationCoveredStat"><div class="number" id="pAccommodationCovered">0</div><div class="label">Cazări confirmate</div></div>
                 </div>
-                <div class="planner-toolbar"><input class="planner-input" id="pSearch" placeholder="Caută un invitat..."/><select class="planner-select" id="pFilter"><option value="all">Toate răspunsurile</option><option value="confirmed">Confirmați</option><option value="waiting">În așteptare</option><option value="declined">Nu pot veni</option></select></div>
+                <div class="planner-toolbar">
+                    <input class="planner-input" id="pSearch" placeholder="Caută un invitat..."/>
+                    <select class="planner-select" id="pFilter"><option value="all">Toate răspunsurile</option><option value="confirmed">Confirmați</option><option value="waiting">În așteptare</option><option value="declined">Nu pot veni</option></select>
+                    <select class="planner-select" id="pTagFilter"><option value="all">Toate etichetele</option></select>
+                    <select class="planner-select" id="pNeedFilter"><option value="all">Toate nevoile</option></select>
+                    <select class="planner-select" id="pChildrenFilter"><option value="all">Toți invitații</option><option value="with-children">Cu copii</option></select>
+                    <button class="reset-filters" id="resetFilters" type="button">Resetează filtrele</button>
+                </div>
                 <div class="planner-table-wrap">
-                    <table class="planner-table"><thead><tr><th>Invitat</th><th>Număr persoane</th><th>Email</th><th>Telefon</th><th>Răspuns</th><th>Acțiuni</th></tr></thead><tbody id="plannerRows"></tbody></table>
+                    <table class="planner-table"><thead><tr><th>Invitat</th><th id="tableSecondHeader">Etichetă</th><th>Număr persoane</th><th>Număr copii</th><th>Telefon</th><th>Răspuns</th><th id="tableTransportHeader">Transport</th><th id="tableAccommodationHeader">Cazare</th><th>Acțiuni</th></tr></thead><tbody id="plannerRows"></tbody></table>
                 </div>
             </div>
 
@@ -2386,15 +2447,18 @@ function createHandwritingText(element) {
         const plannerPanels = document.querySelectorAll(".planner-panel");
 
         function showPlanner(section) {
+            const activeSection = section || "guests";
             body.classList.add("planner-active");
             plannerPanels.forEach(function(panel){
-                panel.style.display = panel.dataset.panel === section ? "block" : "none";
+                panel.style.display = panel.dataset.panel === activeSection ? "block" : "none";
             });
+            localStorage.setItem("weddingPlannerActiveSection",activeSection);
             closeMenu();
             window.scrollTo({top:0,behavior:"smooth"});
         }
         function hidePlanner(){
             body.classList.remove("planner-active");
+            localStorage.removeItem("weddingPlannerActiveSection");
             window.scrollTo({top:0,behavior:"smooth"});
         }
         document.querySelectorAll(".category").forEach(function(category){
@@ -2420,39 +2484,283 @@ function createHandwritingText(element) {
         const pRows = document.getElementById("plannerRows");
         const pSearch = document.getElementById("pSearch");
         const pFilter = document.getElementById("pFilter");
+        const pTagFilter = document.getElementById("pTagFilter");
+        const pNeedFilter = document.getElementById("pNeedFilter");
+        const pChildrenFilter = document.getElementById("pChildrenFilter");
+        const resetFilters = document.getElementById("resetFilters");
+        const tableLayoutPreview = document.getElementById("tableLayoutPreview");
         const modalHTML = document.createElement("div");
         modalHTML.className = "lux-modal";
         modalHTML.id = "guestLuxModal";
         modalHTML.innerHTML = `<div class="lux-box"><h2 id="luxTitle">Adaugă invitat</h2><div class="lux-form">
           <div class="lux-field full"><label>Nume complet</label><input id="luxName" placeholder="Ex: Andreea Popescu"></div>
+          <div class="lux-field"><label>Etichetă</label><div class="tag-input-shell"><input id="luxTag" placeholder="Ex: din partea miresei" autocomplete="off"><div id="tagSuggestions" class="tag-suggestions hidden"></div></div></div>
           <div class="lux-field"><label>Număr persoane</label><input id="luxPeople" type="number" min="1" value="1"></div>
+          <div class="lux-field"><label>Număr copii</label><input id="luxChildren" type="number" min="0" value="0"></div>
           <div class="lux-field"><label>Răspuns</label><select id="luxStatus"><option value="waiting">În așteptare</option><option value="confirmed">Confirmat</option><option value="declined">Nu poate veni</option></select></div>
-          <div class="lux-field"><label>Email</label><input id="luxEmail" type="email"></div><div class="lux-field"><label>Telefon</label><input id="luxPhone"></div>
-          <div class="lux-field full"><label>Notițe</label><textarea id="luxNotes"></textarea></div></div>
+          <div class="lux-field"><label>Telefon</label><input id="luxPhone"></div>
+          <div class="lux-field full"><label>Notițe</label><textarea id="luxNotes"></textarea></div>
+          <div class="lux-field full">
+            <label>Transport</label>
+            <label class="lux-checkbox-row"><input id="luxTransportNeed" type="checkbox"><span>Are nevoie de transport</span></label>
+            <div class="need-detail-box" id="luxTransportDetails">
+              <div class="lux-field"><label>Status transport</label><select id="luxTransportStatus"><option value="Are nevoie de transport">Are nevoie de transport</option><option value="Are transport personal">Are transport personal</option><option value="Transport confirmat">Transport confirmat</option><option value="custom">Alt status...</option></select></div>
+            </div>
+          </div>
+          <div class="lux-field full">
+            <label>Cazare</label>
+            <label class="lux-checkbox-row"><input id="luxAccommodationNeed" type="checkbox"><span>Are nevoie de cazare</span></label>
+            <div class="need-detail-box" id="luxAccommodationDetails">
+              <div class="lux-field"><label>Status cazare</label><select id="luxAccommodationStatus"><option value="Are nevoie de cazare">Are nevoie de cazare</option><option value="Nu are nevoie">Nu are nevoie</option><option value="Cazare confirmată">Cazare confirmată</option><option value="custom">Alt status...</option></select></div>
+            </div>
+          </div>
+        </div>
           <div class="lux-actions"><button class="lux-cancel" id="luxCancel">Anulează</button><button class="lux-save" id="luxSave">Salvează</button></div></div>`;
         document.body.appendChild(modalHTML);
+        const duplicateModal = document.createElement("div");
+        duplicateModal.className = "duplicate-modal";
+        duplicateModal.id = "duplicateGuestModal";
+        duplicateModal.innerHTML = `<div class="duplicate-box" role="dialog" aria-modal="true" aria-labelledby="duplicateGuestTitle">
+          <h2 id="duplicateGuestTitle">Invitat posibil duplicat</h2>
+          <p id="duplicateGuestMessage"></p>
+          <div class="duplicate-actions">
+            <button class="duplicate-edit" id="duplicateEdit">Revenire la editare</button>
+            <button class="duplicate-save" id="duplicateSave">OK, salvează oricum</button>
+          </div>
+        </div>`;
+        document.body.appendChild(duplicateModal);
         const L=id=>document.getElementById(id);
+        function applyTableLayout(value){
+            const allowed=["classic","cards","side-panel"];
+            const layout=allowed.includes(value)?value:"classic";
+            document.body.classList.remove("layout-cards","layout-two-levels","layout-side-panel","layout-grouped");
+            if(layout!=="classic") document.body.classList.add(`layout-${layout}`);
+            localStorage.setItem("weddingPlannerTableLayout",layout);
+            tableLayoutPreview.value=layout;
+        }
+        tableLayoutPreview.value=["classic","cards","side-panel"].includes(localStorage.getItem("weddingPlannerTableLayout")) ? localStorage.getItem("weddingPlannerTableLayout") : "classic";
+        applyTableLayout(tableLayoutPreview.value);
+        tableLayoutPreview.addEventListener("change",()=>{applyTableLayout(tableLayoutPreview.value);renderPlannerGuests()});
         function saveGuests(){localStorage.setItem(GUEST_KEY,JSON.stringify(plannerGuests))}
         function esc(v){return String(v??"").replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;","\"":"&quot;"}[m]))}
+        function getSavedTags(){return [...new Set(plannerGuests.map(g=>g.tag).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ro'))}
+        function tagColor(tag){
+            const colors=[['#f8dfc5','#80552f'],['#dff0e7','#2b634f'],['#e8def5','#60467c'],['#dcecf5','#2d5e75'],['#f5e2ed','#884b68'],['#f4edc9','#756321'],['#e2e4f6','#4e5685']];
+            let hash=0;for(let i=0;i<String(tag).length;i++)hash=(hash*31+String(tag).charCodeAt(i))%colors.length;
+            return `background:${colors[hash][0]};color:${colors[hash][1]};`;
+        }
+        function populateTagFilter(){
+            const tags=getSavedTags();
+            const current=(pTagFilter.value||"all");
+            pTagFilter.innerHTML='<option value="all">Toate etichetele</option>' + tags.map(tag=>`<option value="${esc(tag)}">${esc(tag)}</option>`).join("");
+            if(tags.includes(current)){pTagFilter.value=current;} else {pTagFilter.value='all';}
+        }
+        function renderTagSuggestions(search=''){
+            const input=L('luxTag');
+            const list=L('tagSuggestions');
+            const tags=getSavedTags();
+            const value=(search||input.value||'').trim().toLowerCase();
+            const filtered = value ? tags.filter(tag=>tag.toLowerCase().includes(value)) : tags.slice(0,8);
+            if(!filtered.length){list.classList.add('hidden'); list.innerHTML=''; return;}
+            list.innerHTML = filtered.map(tag => `<button type="button" class="tag-suggestion-option" data-tag="${esc(tag)}">${esc(tag)}</button>`).join('');
+            list.querySelectorAll('.tag-suggestion-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    input.value = btn.dataset.tag || '';
+                    list.classList.add('hidden');
+                });
+            });
+            list.classList.remove('hidden');
+        }
+        function updateNeedDetailsView(){
+            L('luxTransportDetails').classList.toggle('visible',L('luxTransportNeed').checked);
+            L('luxAccommodationDetails').classList.toggle('visible',L('luxAccommodationNeed').checked);
+        }
+        function getNeedStatus(g,type){
+            if(type==='transport'){
+                const status=g.transportStatus || (g.transportNeed ? 'Are nevoie de transport' : 'Nu are nevoie');
+                return status==='Asigurat de mireasă și mire' ? 'Transport confirmat' : status;
+            }
+            const status=g.accommodationStatus || (g.accommodationNeed ? 'Are nevoie de cazare' : 'Nu are nevoie');
+            return status==='Are cazare' ? 'Are nevoie de cazare' : status;
+        }
+        function hasCustomNeedStatus(g,type){
+            const standard=type==='transport'
+                ? ['Are nevoie de transport','Are transport personal','Transport confirmat','Nu are nevoie']
+                : ['Are nevoie de cazare','Nu are nevoie','Cazare confirmată'];
+            return Boolean(g[`${type}Need`]) && !standard.includes(getNeedStatus(g,type));
+        }
+        function getNeedOptions(type,current){
+            const values=type==='transport'
+                ? ['Are nevoie de transport','Are transport personal','Transport confirmat']
+                : ['Are nevoie de cazare','Nu are nevoie','Cazare confirmată'];
+            if(current && !values.includes(current)) values.push(current);
+            return values.map(value=>`<option value="${esc(value)}" ${value===current?'selected':''}>${esc(value)}</option>`).join('')+'<option value="custom">Alt status...</option>';
+        }
+        function getGuestNeedText(g,type){return getNeedStatus(g,type)}
+        function updateNeedStatus(id,type,value){
+            const g=plannerGuests.find(x=>String(x.id)===String(id));
+            if(!g) return;
+            if(value==='custom'){
+                const label=type==='transport'?'transport':'cazare';
+                const custom=prompt(`Scrie statusul pentru ${label}:`,getNeedStatus(g,type));
+                if(!custom || !custom.trim()){renderPlannerGuests();return;}
+                value=custom.trim();
+            }
+            if(type==='transport'){g.transportStatus=value;g.transportNeed=true;}
+            else {g.accommodationStatus=value;g.accommodationNeed=true;}
+            saveGuests();renderPlannerGuests();
+        }
+        window.updateNeedStatus=updateNeedStatus;
+        function getNeedFilterOptions(){
+            const hasTransport = plannerGuests.some(g => g.transportNeed);
+            const hasTransportNeed = plannerGuests.some(g => getNeedStatus(g,'transport') === 'Are nevoie de transport');
+            const hasAccommodation = plannerGuests.some(g => g.accommodationNeed);
+            const options = ['<option value="all">Toate nevoile</option>'];
+            if(hasTransport) options.push('<option value="transport-all">Doar transport</option>');
+            if(hasTransportNeed) options.push('<option value="transport">Are nevoie de transport</option>');
+            if(plannerGuests.some(g => getNeedStatus(g,'transport') === 'Transport confirmat')) options.push('<option value="transport-covered">Transport confirmat</option>');
+            if(hasAccommodation) options.push('<option value="accommodation">Doar cazare</option>');
+            if(plannerGuests.some(g => getNeedStatus(g,'accommodation') === 'Cazare confirmată')) options.push('<option value="accommodation-confirmed">Cazare confirmată</option>');
+            if(plannerGuests.some(g => hasCustomNeedStatus(g,'transport') || hasCustomNeedStatus(g,'accommodation'))) options.push('<option value="custom-status">Alt status</option>');
+            if(hasTransport && hasAccommodation) options.push('<option value="both">Transport + cazare</option>');
+            options.push('<option value="none">Fără nevoi speciale</option>');
+            return options.join('');
+        }
         function renderPlannerGuests(){
-            const q=pSearch.value.trim().toLowerCase(), f=pFilter.value;
-            const visible=plannerGuests.filter(g=>(!q||[g.name,g.email,g.phone].join(" ").toLowerCase().includes(q))&&(f==="all"||g.status===f));
-            pRows.innerHTML=visible.length ? visible.map(g=>`<tr><td><div class="guest-name-cell"><span class="guest-avatar">${esc((g.name||"?").charAt(0).toUpperCase())}</span>${esc(g.name)}</div></td><td>${g.people}</td><td>${esc(g.email||"—")}</td><td>${esc(g.phone||"—")}</td><td><select class="status-select-luxury" onchange="window.updatePlannerStatus('${String(g.id).replace(/'/g,"\\'")}',this.value)"><option value="waiting" ${g.status==="waiting"?"selected":""}>În așteptare</option><option value="confirmed" ${g.status==="confirmed"?"selected":""}>Confirmat</option><option value="declined" ${g.status==="declined"?"selected":""}>Nu poate veni</option></select></td><td><div class="row-actions"><button class="row-action" onclick="window.editPlannerGuest('${String(g.id).replace(/'/g,"\\'")}')" title="Editează">✎</button><button class="row-action" onclick="window.deletePlannerGuest('${String(g.id).replace(/'/g,"\\'")}')" title="Șterge">×</button></div></td></tr>`).join(""):`<tr><td colspan="6"><div class="empty-planner"><strong>Încă nu ai invitați</strong>Adaugă primul invitat pentru a începe lista.</div></td></tr>`;
+            const q=pSearch.value.trim().toLowerCase(), f=pFilter.value, tagFilter=pTagFilter.value, needFilter=pNeedFilter.value, childrenFilter=pChildrenFilter.value;
+            const hasTransport = plannerGuests.some(g => g.transportNeed);
+            const hasAccommodation = plannerGuests.some(g => g.accommodationNeed);
+            const hasSpecialNeeds = hasTransport || hasAccommodation;
+            pNeedFilter.style.display = hasSpecialNeeds ? '' : 'none';
+            const visible=plannerGuests.filter(g=>(!q||[g.name,g.phone,g.tag,g.notes].join(' ').toLowerCase().includes(q))&&(f==='all'||g.status===f)&&(tagFilter==='all'||g.tag===tagFilter)&&(childrenFilter==='all'||(childrenFilter==='with-children'&&Number(g.children||0)>0))&&(
+                !hasSpecialNeeds ? true :
+                (needFilter==='all' ||
+                (needFilter==='transport-all' && g.transportNeed && !g.accommodationNeed) ||
+                (needFilter==='transport' && getNeedStatus(g,'transport')==='Are nevoie de transport') ||
+                (needFilter==='transport-covered' && getNeedStatus(g,'transport')==='Transport confirmat') ||
+                (needFilter==='accommodation' && g.accommodationNeed && !g.transportNeed) ||
+                (needFilter==='accommodation-confirmed' && getNeedStatus(g,'accommodation')==='Cazare confirmată') ||
+                (needFilter==='custom-status' && (hasCustomNeedStatus(g,'transport') || hasCustomNeedStatus(g,'accommodation'))) ||
+                (needFilter==='both' && g.transportNeed && g.accommodationNeed) ||
+                (needFilter==='none' && !g.transportNeed && !g.accommodationNeed))
+            ));
+            L("tableSecondHeader").textContent=document.body.classList.contains("layout-side-panel") ? "Răspuns" : "Etichetă";
+            document.getElementById('tableTransportHeader').style.display = hasTransport ? '' : 'none';
+            document.getElementById('tableAccommodationHeader').style.display = hasAccommodation ? '' : 'none';
+            pRows.innerHTML=visible.length ? visible.map(g=>{
+                const transportCell = hasTransport ? `<td><select class="status-select-luxury need-status-select" onchange="window.updateNeedStatus('${String(g.id).replace(/'/g,"\\'")}','transport',this.value)">${getNeedOptions('transport',getNeedStatus(g,'transport'))}</select></td>` : '';
+                const accommodationCell = hasAccommodation ? `<td><select class="status-select-luxury need-status-select" onchange="window.updateNeedStatus('${String(g.id).replace(/'/g,"\\'")}','accommodation',this.value)">${getNeedOptions('accommodation',getNeedStatus(g,'accommodation'))}</select></td>` : '';
+                const rowId=String(g.id).replace(/'/g,"\\'");
+                const sidePanelLayout=document.body.classList.contains("layout-side-panel");
+                const secondCell=sidePanelLayout
+                    ? `<td><select class="status-select-luxury" onchange="window.updatePlannerStatus('${rowId}',this.value)"><option value="waiting" ${g.status==="waiting"?"selected":""}>În așteptare</option><option value="confirmed" ${g.status==="confirmed"?"selected":""}>Confirmat</option><option value="declined" ${g.status==="declined"?"selected":""}>Nu poate veni</option></select></td>`
+                    : `<td>${g.tag ? `<span class="guest-tag-badge" style="${tagColor(g.tag)}">${esc(g.tag)}</span>` : '—'}</td>`;
+                const actions=`<div class="row-actions"><button class="row-action" onclick="window.editPlannerGuest('${rowId}')" title="Editează">✎</button><button class="row-action" onclick="window.deletePlannerGuest('${rowId}')" title="Șterge">×</button></div>`;
+                const details=`<div class="table-layout-details"><span>${g.people} persoane</span><span>${Number(g.children||0)} copii</span><span>${esc(g.phone||'Fără telefon')}</span></div>`;
+                const card=`<div class="table-layout-card"><div class="card-line"><span>Răspuns</span><strong>${g.status==='confirmed'?'Confirmat':g.status==='waiting'?'În așteptare':'Nu poate veni'}</strong></div><div class="card-line"><span>Persoane</span><strong>${g.people} (${Number(g.children||0)} copii)</strong></div><div class="card-line"><span>Telefon</span><strong>${esc(g.phone||'—')}</strong></div><div class="card-actions">${actions}</div></div>`;
+                const noteMarker=g.notes ? `<span class="guest-note-dot" data-note="${esc(g.notes)}" tabindex="0" aria-label="Notă: ${esc(g.notes)}">Notă</span>` : '';
+                return `<tr data-guest-id="${rowId}"><td><div class="guest-name-cell"><span class="guest-avatar">${esc((g.name||"?").charAt(0).toUpperCase())}</span>${noteMarker}<span>${esc(g.name)}</span></div>${details}${card}</td>${secondCell}<td>${g.people}</td><td>${Number(g.children||0)}</td><td>${esc(g.phone||'—')}</td><td><select class="status-select-luxury" onchange="window.updatePlannerStatus('${rowId}',this.value)"><option value="waiting" ${g.status==="waiting"?"selected":""}>În așteptare</option><option value="confirmed" ${g.status==="confirmed"?"selected":""}>Confirmat</option><option value="declined" ${g.status==="declined"?"selected":""}>Nu poate veni</option></select></td>${transportCell}${accommodationCell}<td>${actions}</td></tr>`;
+            }).join(""):`<tr><td colspan="${9 + (hasTransport ? 1 : 0) + (hasAccommodation ? 1 : 0)}"><div class="empty-planner"><strong>Încă nu ai invitați</strong>Adaugă primul invitat pentru a începe lista.</div></td></tr>`;
             L("pTotal").textContent=plannerGuests.reduce((s,g)=>s+Number(g.people||0),0);
             L("pConfirmed").textContent=plannerGuests.filter(g=>g.status==="confirmed").reduce((s,g)=>s+Number(g.people||0),0);
             L("pWaiting").textContent=plannerGuests.filter(g=>g.status==="waiting").reduce((s,g)=>s+Number(g.people||0),0);
             L("pDeclined").textContent=plannerGuests.filter(g=>g.status==="declined").reduce((s,g)=>s+Number(g.people||0),0);
+            const transportGuests=plannerGuests.filter(g=>g.transportNeed);
+            const accommodationGuests=plannerGuests.filter(g=>g.accommodationNeed);
+            const transportNeedGuests=transportGuests.filter(g=>getNeedStatus(g,'transport')==='Are nevoie de transport');
+            const transportNeedCount=transportNeedGuests.reduce((sum,g)=>sum+Number(g.people||0),0);
+            const transportCovered=transportGuests.filter(g=>getNeedStatus(g,'transport')==='Transport confirmat');
+            const transportCoveredCount=transportCovered.reduce((sum,g)=>sum+Number(g.people||0),0);
+            const accommodationNeedGuests=accommodationGuests.filter(g=>getNeedStatus(g,'accommodation')==='Are nevoie de cazare');
+            const accommodationNeedCount=accommodationNeedGuests.reduce((sum,g)=>sum+Number(g.people||0),0);
+            const accommodationCovered=accommodationGuests.filter(g=>getNeedStatus(g,'accommodation')==='Cazare confirmată');
+            const accommodationCoveredCount=accommodationCovered.reduce((sum,g)=>sum+Number(g.people||0),0);
+            const transportRelevantCount=transportNeedCount+transportCoveredCount;
+            const accommodationRelevantCount=accommodationNeedCount+accommodationCoveredCount;
+            [['pTransportNeedStat',transportNeedCount>0],['pTransportCoveredStat',transportCoveredCount>0 && transportRelevantCount>0],['pAccommodationNeedStat',accommodationNeedCount>0],['pAccommodationCoveredStat',accommodationCoveredCount>0 && accommodationRelevantCount>0]].forEach(([id,visible])=>{
+                L(id).classList.toggle('visible',visible);
+            });
+            L('pTransportNeed').textContent=transportNeedCount;
+            L('pTransportCovered').textContent=`${transportCoveredCount}/${transportRelevantCount}`;
+            L('pAccommodationNeed').textContent=accommodationNeedCount;
+            L('pAccommodationCovered').textContent=`${accommodationCoveredCount}/${accommodationRelevantCount}`;
+            const currentNeed=pNeedFilter.value;
+            pNeedFilter.innerHTML=getNeedFilterOptions();
+            pNeedFilter.value=Array.from(pNeedFilter.options).some(option=>option.value===currentNeed) ? currentNeed : 'all';
+            populateTagFilter();
         }
         window.updatePlannerStatus=function(id,status){const g=plannerGuests.find(x=>String(x.id)===String(id));if(g){g.status=status;saveGuests();renderPlannerGuests()}};
         window.deletePlannerGuest=function(id){if(confirm("Ștergi acest invitat?")){plannerGuests=plannerGuests.filter(x=>String(x.id)!==String(id));saveGuests();renderPlannerGuests()}};
-        function openLuxModal(id=null){plannerEditingId=id;const g=id?plannerGuests.find(x=>String(x.id)===String(id)):null;L("luxTitle").textContent=g?"Editează invitat":"Adaugă invitat";L("luxName").value=g?.name||"";L("luxPeople").value=g?.people||1;L("luxStatus").value=g?.status||"waiting";L("luxEmail").value=g?.email||"";L("luxPhone").value=g?.phone||"";L("luxNotes").value=g?.notes||"";modalHTML.classList.add("open");setTimeout(()=>L("luxName").focus(),30)}
+        function setNeedSelect(id,value,fallback){const select=L(id);if(value&&!Array.from(select.options).some(option=>option.value===value)){select.insertAdjacentHTML("afterbegin",`<option value="${esc(value)}">${esc(value)}</option>`)}select.value=value||fallback}
+        function openLuxModal(id=null){plannerEditingId=id;const g=id?plannerGuests.find(x=>String(x.id)===String(id)):null;L("luxTitle").textContent=g?"Editează invitat":"Adaugă invitat";L("luxName").value=g?.name||"";L("luxTag").value=g?.tag||"";L("luxPeople").value=g?.people||1;L("luxChildren").value=g?.children ?? 0;L("luxStatus").value=g?.status||"waiting";L("luxPhone").value=g?.phone||"";L("luxNotes").value=g?.notes||"";L("luxTransportNeed").checked=Boolean(g?.transportNeed);L("luxAccommodationNeed").checked=Boolean(g?.accommodationNeed);setNeedSelect("luxTransportStatus",g?.transportStatus||"Are nevoie de transport","Are nevoie de transport");setNeedSelect("luxAccommodationStatus",g?.accommodationStatus||"Are nevoie de cazare","Are nevoie de cazare");updateNeedDetailsView();renderTagSuggestions(L("luxTag").value);modalHTML.classList.add("open");setTimeout(()=>L("luxName").focus(),30)}
         window.editPlannerGuest=function(id){openLuxModal(id)};
         L("plannerAddGuest").addEventListener("click",()=>openLuxModal());
         L("luxCancel").addEventListener("click",()=>modalHTML.classList.remove("open"));
         modalHTML.addEventListener("click",e=>{if(e.target===modalHTML)modalHTML.classList.remove("open")});
-        L("luxSave").addEventListener("click",function(){const name=L("luxName").value.trim();if(!name)return alert("Scrie numele invitatului.");const data={name,people:Math.max(1,Number(L("luxPeople").value||1)),status:L("luxStatus").value,email:L("luxEmail").value.trim(),phone:L("luxPhone").value.trim(),notes:L("luxNotes").value.trim()};if(plannerEditingId){Object.assign(plannerGuests.find(x=>String(x.id)===String(plannerEditingId)),data)}else{plannerGuests.push({id:Date.now()+Math.random(),...data})}saveGuests();modalHTML.classList.remove("open");renderPlannerGuests()});
-        pSearch.addEventListener("input",renderPlannerGuests);pFilter.addEventListener("change",renderPlannerGuests);document.addEventListener("keydown",e=>{if(e.key==="Escape")modalHTML.classList.remove("open")});
+        L("luxTransportNeed").addEventListener("change",updateNeedDetailsView);
+        L("luxAccommodationNeed").addEventListener("change",updateNeedDetailsView);
+        L("luxTag").addEventListener("input",()=>renderTagSuggestions(L("luxTag").value));
+        document.addEventListener("click", function(event){
+            const shell = event.target.closest('.tag-input-shell');
+            const suggestions = L('tagSuggestions');
+            if (!shell) suggestions.classList.add('hidden');
+        });
+        L("luxTransportStatus").addEventListener("change",function(){if(this.value==="custom"){const value=prompt("Scrie statusul pentru transport:");if(value&&value.trim()){this.insertAdjacentHTML("afterbegin",`<option value="${esc(value.trim())}" selected>${esc(value.trim())}</option>`)}else{this.value="Are nevoie de transport";}}});
+        L("luxAccommodationStatus").addEventListener("change",function(){if(this.value==="custom"){const value=prompt("Scrie statusul pentru cazare:");if(value&&value.trim()){this.insertAdjacentHTML("afterbegin",`<option value="${esc(value.trim())}" selected>${esc(value.trim())}</option>`)}else{this.value="Are nevoie de cazare";}}});
+        function normalizeDuplicateValue(value){return String(value||"").trim().toLocaleLowerCase("ro").replace(/\s+/g," ");}
+        function findDuplicateGuest(data){
+            const name=normalizeDuplicateValue(data.name),phone=normalizeDuplicateValue(data.phone).replace(/[^0-9+]/g,"");
+            return plannerGuests.find(g=>{
+                if(plannerEditingId && String(g.id)===String(plannerEditingId)) return false;
+                const sameName=name && normalizeDuplicateValue(g.name)===name;
+                const samePhone=phone && normalizeDuplicateValue(g.phone).replace(/[^0-9+]/g,"")===phone;
+                return sameName || samePhone;
+            });
+        }
+        function closeDuplicateModal(){duplicateModal.classList.remove("open");}
+        function showDuplicateModal(duplicate,onSave){
+            L("duplicateGuestMessage").textContent=`Există deja un invitat cu același nume sau aceleași date: "${duplicate.name}". Vrei să salvezi totuși acest invitat separat?`;
+            duplicateModal.classList.add("open");
+            L("duplicateSave").onclick=function(){closeDuplicateModal();onSave();};
+            L("duplicateEdit").onclick=closeDuplicateModal;
+        }
+        L("luxSave").addEventListener("click",function(){
+            const name=L("luxName").value.trim();
+            if(!name)return alert("Scrie numele invitatului.");
+            const transportNeed=L("luxTransportNeed").checked,accommodationNeed=L("luxAccommodationNeed").checked;
+            const data={name,people:Math.max(1,Number(L("luxPeople").value||1)),children:Math.max(0,Number(L("luxChildren").value||0)),status:L("luxStatus").value,tag:L("luxTag").value.trim(),phone:L("luxPhone").value.trim(),notes:L("luxNotes").value.trim(),transportNeed,transportStatus:transportNeed&&L("luxTransportStatus").value!=="custom"?L("luxTransportStatus").value:"",accommodationNeed,accommodationStatus:accommodationNeed&&L("luxAccommodationStatus").value!=="custom"?L("luxAccommodationStatus").value:""};
+            if(!plannerEditingId){
+                const duplicate=findDuplicateGuest(data);
+                if(duplicate){
+                    showDuplicateModal(duplicate,function(){
+                        plannerGuests.push({id:Date.now()+Math.random(),...data});
+                        saveGuests();populateTagFilter();modalHTML.classList.remove("open");renderPlannerGuests();
+                    });
+                    return;
+                }
+            }
+            if(plannerEditingId){Object.assign(plannerGuests.find(x=>String(x.id)===String(plannerEditingId)),data)}else{plannerGuests.push({id:Date.now()+Math.random(),...data})}
+            saveGuests();populateTagFilter();modalHTML.classList.remove("open");renderPlannerGuests()
+        });
+        pRows.addEventListener("click",function(event){
+            if(!document.body.classList.contains("layout-side-panel") || event.target.closest("button,select")) return;
+            const row=event.target.closest("tr[data-guest-id]");
+            if(row) openLuxModal(row.dataset.guestId);
+        });
+        resetFilters.addEventListener("click",function(){
+            pSearch.value="";
+            pFilter.value="all";
+            pTagFilter.value="all";
+            pNeedFilter.value="all";
+            pChildrenFilter.value="all";
+            renderPlannerGuests();
+        });
+        pSearch.addEventListener("input",renderPlannerGuests);pFilter.addEventListener("change",renderPlannerGuests);pTagFilter.addEventListener("change",renderPlannerGuests);pNeedFilter.addEventListener("change",renderPlannerGuests);pChildrenFilter.addEventListener("change",renderPlannerGuests);document.addEventListener("keydown",e=>{if(e.key==="Escape"){if(duplicateModal.classList.contains("open"))closeDuplicateModal();else modalHTML.classList.remove("open")}});
         renderPlannerGuests();
+        const savedPlannerSection=localStorage.getItem("weddingPlannerActiveSection");
+        if(savedPlannerSection && [...plannerPanels].some(panel=>panel.dataset.panel===savedPlannerSection)){
+            showPlanner(savedPlannerSection);
+        }
 
 
     </script>
